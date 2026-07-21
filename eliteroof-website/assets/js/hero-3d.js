@@ -78,7 +78,7 @@
       color: 0x3d4c44, roughness: 0.32, metalness: 0.55,
       emissive: 0x141c18, emissiveIntensity: 0.4,
     });
-    const accentMat = new THREE.MeshStandardMaterial({ color: 0x93c1a9, roughness: 0.32, metalness: 0.5 });
+    const accentMat = new THREE.MeshStandardMaterial({ color: 0xdcae54, roughness: 0.32, metalness: 0.5 });
 
     const wallW = 2.2;
     const wallH = 1.1;
@@ -86,6 +86,26 @@
     const walls = new THREE.Mesh(new THREE.BoxGeometry(wallW, wallH, wallD), wallMat);
     walls.position.y = wallH / 2;
     house.add(walls);
+
+    // Warm lit windows — unlit (MeshBasic, ignores the scene's lighting so
+    // it always reads as "glowing" regardless of rotation angle), the
+    // single biggest lever for the "premium house at night" mood this
+    // model is going for. A few on the front face, a couple on the side so
+    // the house still reads as inhabited from any angle mid-rotation.
+    const windowMat = new THREE.MeshBasicMaterial({ color: 0xffd28c });
+    const windowGeo = new THREE.PlaneGeometry(0.17, 0.24);
+    const frontWindowY = wallH * 0.58;
+    [-0.78, -0.28, 0.28, 0.78].forEach((x) => {
+      const win = new THREE.Mesh(windowGeo, windowMat);
+      win.position.set(x, frontWindowY, wallD / 2 + 0.002);
+      house.add(win);
+    });
+    [-0.42, 0.42].forEach((z) => {
+      const win = new THREE.Mesh(windowGeo, windowMat);
+      win.position.set(wallW / 2 + 0.002, frontWindowY, z);
+      win.rotation.y = Math.PI / 2;
+      house.add(win);
+    });
 
     // Gable roof: a triangular profile extruded along the ridge, with a
     // small eave overhang beyond the wall footprint.
@@ -107,7 +127,7 @@
     // blueprint line-art motif the flat SVG established.
     const roofEdges = new THREE.LineSegments(
       new THREE.EdgesGeometry(roofGeo, 20),
-      new THREE.LineBasicMaterial({ color: 0x93c1a9, transparent: true, opacity: 0.55 })
+      new THREE.LineBasicMaterial({ color: 0xdcae54, transparent: true, opacity: 0.55 })
     );
     roofEdges.position.y = wallH;
     house.add(roofEdges);
@@ -129,7 +149,7 @@
     // line" echo of the flat illustration's hi-dim/hi-tick marks.
     const baseEdges = new THREE.LineSegments(
       new THREE.EdgesGeometry(new THREE.BoxGeometry(wallW, wallH, wallD)),
-      new THREE.LineBasicMaterial({ color: 0x93c1a9, transparent: true, opacity: 0.14 })
+      new THREE.LineBasicMaterial({ color: 0xdcae54, transparent: true, opacity: 0.14 })
     );
     baseEdges.position.y = wallH / 2;
     house.add(baseEdges);
@@ -158,7 +178,7 @@
     const fill = new THREE.HemisphereLight(0x8a97ad, 0x1c1611, 0.55);
     scene.add(fill);
 
-    const rim = new THREE.DirectionalLight(0x93c1a9, 1.1);
+    const rim = new THREE.DirectionalLight(0xdcae54, 1.1);
     rim.position.set(-3.4, 2.2, -4.2);
     scene.add(rim);
 

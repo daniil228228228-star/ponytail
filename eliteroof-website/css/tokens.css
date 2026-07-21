@@ -1,10 +1,15 @@
 /* Design tokens — grounded in the material world of a working roof, not a
    generic "editorial premium" template: cool zinc/slate paper instead of
-   warm cream, oxidized-copper patina as the one true accent (real roofers
-   see this color on flashing and church spires, not on a mood board), and
-   an expanded industrial grotesk instead of a serif+Inter pairing. Mono
-   face is used *only* where digits are actually tabular data (spec
-   numbers, prices, stats) — it's a spec-sheet reference, not decoration. */
+   warm cream, an expanded industrial grotesk instead of a serif+Inter
+   pairing, and a deep architectural gold as the one true accent (night
+   aerial shots of premium roofs, gold signage on a black storefront —
+   luxury-construction, not SaaS-mood-board). Gold is intentionally two
+   different values depending on ground: a deep bronze-gold on the light
+   paper background (bright gold fails AA as text there) and a brighter,
+   more vivid gold on dark surfaces (hero, why-us, footer) where it can
+   read at full saturation. Mono face is used *only* where digits are
+   actually tabular data (spec numbers, prices, stats) — it's a
+   spec-sheet reference, not decoration. */
 
 :root {
   --bg: #eef1ee;
@@ -18,11 +23,12 @@
   --fg-on-dark: #ffffff;
   --border: #ccd6cd;
   --border-soft: #e1e8e2;
-  --accent: #3f6353;
+  --accent: #7d5d1e;
   --accent-on: #ffffff;
-  --accent-hover: #345345;
-  --accent-active: #2a4438;
-  --accent-on-dark: #93c1a9;
+  --accent-hover: #6a4f19;
+  --accent-active: #583f14;
+  --accent-on-dark: #dcae54;
+  --accent-on-dark-ink: #1a1408;
   --success: #2f8f52;
   --warn: #c4872c;
   --danger: #b23b3b;
@@ -65,7 +71,7 @@
   --elev-flat: none;
   --elev-ring: 0 0 0 1px var(--border);
   --elev-raised: 0 24px 64px rgba(28, 27, 25, 0.12);
-  --focus-ring: 0 0 0 4px rgba(160, 106, 59, 0.28);
+  --focus-ring: 0 0 0 4px rgba(125, 93, 30, 0.32);
 
   --motion-fast: 170ms;
   --motion-base: 280ms;
@@ -87,11 +93,11 @@
     --muted: #93a196;
     --border: #34413a;
     --border-soft: #232c26;
-    --accent: #7bab8f;
-    --accent-on: #0d1710;
-    --accent-hover: #8fbfa2;
-    --accent-active: #a3ceb5;
+    --accent: #dcae54;
+    --accent-on: #1a1408;
+    --accent-hover: #e6bd6d;
+    --accent-active: #efc985;
     --elev-raised: 0 24px 64px rgba(0, 0, 0, 0.45);
-    --focus-ring: 0 0 0 4px rgba(123, 171, 143, 0.32);
+    --focus-ring: 0 0 0 4px rgba(220, 174, 84, 0.32);
   }
 }

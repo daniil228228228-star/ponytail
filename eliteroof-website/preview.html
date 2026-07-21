@@ -1,16 +1,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#3f6353">
+<meta name="theme-color" content="#12181a">
 <title>ELITEROOF — превью сайта</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 /* Design tokens — grounded in the material world of a working roof, not a
    generic "editorial premium" template: cool zinc/slate paper instead of
-   warm cream, oxidized-copper patina as the one true accent (real roofers
-   see this color on flashing and church spires, not on a mood board), and
-   an expanded industrial grotesk instead of a serif+Inter pairing. Mono
-   face is used *only* where digits are actually tabular data (spec
-   numbers, prices, stats) — it's a spec-sheet reference, not decoration. */
+   warm cream, an expanded industrial grotesk instead of a serif+Inter
+   pairing, and a deep architectural gold as the one true accent (night
+   aerial shots of premium roofs, gold signage on a black storefront —
+   luxury-construction, not SaaS-mood-board). Gold is intentionally two
+   different values depending on ground: a deep bronze-gold on the light
+   paper background (bright gold fails AA as text there) and a brighter,
+   more vivid gold on dark surfaces (hero, why-us, footer) where it can
+   read at full saturation. Mono face is used *only* where digits are
+   actually tabular data (spec numbers, prices, stats) — it's a
+   spec-sheet reference, not decoration. */
 
 :root {
   --bg: #eef1ee;
@@ -24,11 +29,12 @@
   --fg-on-dark: #ffffff;
   --border: #ccd6cd;
   --border-soft: #e1e8e2;
-  --accent: #3f6353;
+  --accent: #7d5d1e;
   --accent-on: #ffffff;
-  --accent-hover: #345345;
-  --accent-active: #2a4438;
-  --accent-on-dark: #93c1a9;
+  --accent-hover: #6a4f19;
+  --accent-active: #583f14;
+  --accent-on-dark: #dcae54;
+  --accent-on-dark-ink: #1a1408;
   --success: #2f8f52;
   --warn: #c4872c;
   --danger: #b23b3b;
@@ -71,7 +77,7 @@
   --elev-flat: none;
   --elev-ring: 0 0 0 1px var(--border);
   --elev-raised: 0 24px 64px rgba(28, 27, 25, 0.12);
-  --focus-ring: 0 0 0 4px rgba(160, 106, 59, 0.28);
+  --focus-ring: 0 0 0 4px rgba(125, 93, 30, 0.32);
 
   --motion-fast: 170ms;
   --motion-base: 280ms;
@@ -93,12 +99,12 @@
     --muted: #93a196;
     --border: #34413a;
     --border-soft: #232c26;
-    --accent: #7bab8f;
-    --accent-on: #0d1710;
-    --accent-hover: #8fbfa2;
-    --accent-active: #a3ceb5;
+    --accent: #dcae54;
+    --accent-on: #1a1408;
+    --accent-hover: #e6bd6d;
+    --accent-active: #efc985;
     --elev-raised: 0 24px 64px rgba(0, 0, 0, 0.45);
-    --focus-ring: 0 0 0 4px rgba(123, 171, 143, 0.32);
+    --focus-ring: 0 0 0 4px rgba(220, 174, 84, 0.32);
   }
 }
 
@@ -171,6 +177,12 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 .btn-primary { background: var(--accent); color: var(--accent-on); }
 .btn-primary:hover { background: var(--accent-hover); }
 .btn-primary:active { background: var(--accent-active); }
+/* On dark surfaces the accent flips to a brighter, more saturated gold
+   with dark ink text — the deep bronze used on the light paper background
+   reads as muddy brown once dropped onto near-black. */
+.btn-primary-dark { background: var(--accent-on-dark); color: var(--accent-on-dark-ink); }
+.btn-primary-dark:hover { filter: brightness(1.08); }
+.btn-primary-dark:active { filter: brightness(0.92); }
 .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent-hover); }
 .btn-ghost-light { color: var(--fg-on-dark); border-color: rgba(255,255,255,0.28); }
@@ -294,7 +306,9 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 
 .hero-ledger { position: relative; margin-top: clamp(48px, 8vw, 88px); border-top: 1px solid rgba(255,255,255,0.14); }
 .hero-stats { display: grid; grid-template-columns: repeat(4, auto); gap: var(--space-6); margin: 0; padding-block: var(--space-6); }
-.hero-stats dt { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 600; color: var(--fg-on-dark); font-variant-numeric: tabular-nums; }
+.hero-stats > div { padding-left: var(--space-6); border-left: 1px solid rgba(255,255,255,0.14); }
+.hero-stats > div:first-child { padding-left: 0; border-left: none; }
+.hero-stats dt { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 600; color: var(--accent-on-dark); font-variant-numeric: tabular-nums; }
 .hero-stats dd { margin: 0; font-size: var(--text-xs); color: var(--muted-on-dark); }
 
 @media (max-width: 900px) {
@@ -304,7 +318,8 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
      making the (transparent-background) ghost button hard to read against
      the model behind it. */
   .hero-blueprint { width: 78%; right: -18%; bottom: auto; aspect-ratio: 1 / 1; opacity: 0.7; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--space-5); }
+  .hero-stats > div:nth-child(3) { padding-left: 0; border-left: none; }
 }
 
 /* ---------- Sections ---------- */
@@ -344,27 +359,40 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
   .spec-link { grid-area: link; justify-self: start; }
 }
 
-/* ---------- Why us: dark manifesto ---------- */
+/* ---------- Why us: bento grid ----------
+   Four parallel reasons, not a sequence — so hierarchy is carried by tile
+   size (the guarantee, our strongest differentiator, gets the large tile)
+   instead of an arbitrary 01-04 numbering that would imply an order none
+   of these actually have. */
 .why-manifesto { position: relative; background: var(--surface-dark); color: var(--fg-on-dark); }
 .why-manifesto h2, .why-manifesto p { color: inherit; }
-.manifesto-list {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
-  border-top: 1px solid rgba(255,255,255,0.14);
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-auto-rows: minmax(184px, auto);
+  gap: var(--space-4);
+  margin-top: var(--space-8);
 }
-.manifesto-list li {
-  display: flex; gap: var(--space-6); align-items: baseline;
-  padding: var(--space-8) 0; border-bottom: 1px solid rgba(255,255,255,0.14);
+.bento-tile {
+  display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-3);
+  padding: var(--space-6); border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.1);
+  transition: background-color var(--motion-base) var(--ease-standard), border-color var(--motion-base) var(--ease-standard);
 }
-.manifesto-list li:nth-child(odd) { padding-right: var(--space-8); }
-.manifesto-list li:nth-child(even) { padding-left: var(--space-8); border-left: 1px solid rgba(255,255,255,0.14); }
-.m-num { font-family: var(--font-mono); font-size: var(--text-2xl); color: var(--accent-on-dark); line-height: 1; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-.manifesto-list h3 { color: var(--fg-on-dark); }
-.manifesto-list p { color: var(--muted-on-dark); margin: 0; font-size: var(--text-sm); }
+.bento-tile:hover { background: rgba(255,255,255,0.075); border-color: rgba(255,255,255,0.2); }
+.bento-tile-lg { grid-column: 1; grid-row: 1 / span 2; }
+.bento-tile-wide { grid-column: 2 / span 2; grid-row: 2; }
+.bento-icon { width: 26px; height: 26px; color: var(--accent-on-dark); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.bento-tile h3 { color: var(--fg-on-dark); margin: 0 0 var(--space-1); }
+.bento-tile p { color: var(--muted-on-dark); margin: 0; font-size: var(--text-sm); }
+.bento-stat { display: flex; align-items: baseline; gap: var(--space-2); margin: 0; }
+.bento-stat-num {
+  font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: 600; line-height: 1;
+  color: var(--accent-on-dark); font-variant-numeric: tabular-nums;
+}
 @media (max-width: 900px) {
-  .manifesto-list { grid-template-columns: 1fr; }
-  .manifesto-list li:nth-child(even) { padding-left: 0; border-left: none; }
-  .manifesto-list li:nth-child(odd) { padding-right: 0; }
+  .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .bento-tile-lg, .bento-tile-wide { grid-column: auto; grid-row: auto; }
 }
 
 /* ---------- Process: staggered spine timeline ---------- */
@@ -566,10 +594,10 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 .spec-row[data-reveal]:nth-child(5) { transition-delay: 240ms; }
 .spec-row[data-reveal]:nth-child(6) { transition-delay: 300ms; }
 
-.manifesto-list > li[data-reveal]:nth-child(1) { transition-delay: 0ms; }
-.manifesto-list > li[data-reveal]:nth-child(2) { transition-delay: 80ms; }
-.manifesto-list > li[data-reveal]:nth-child(3) { transition-delay: 160ms; }
-.manifesto-list > li[data-reveal]:nth-child(4) { transition-delay: 240ms; }
+.bento-tile[data-reveal]:nth-child(1) { transition-delay: 0ms; }
+.bento-tile[data-reveal]:nth-child(2) { transition-delay: 80ms; }
+.bento-tile[data-reveal]:nth-child(3) { transition-delay: 160ms; }
+.bento-tile[data-reveal]:nth-child(4) { transition-delay: 240ms; }
 
 .spine-item[data-reveal]:nth-child(1) { transition-delay: 0ms; }
 .spine-item[data-reveal]:nth-child(2) { transition-delay: 90ms; }
@@ -585,7 +613,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 .masonry .project-card[data-reveal]:nth-child(6n+6) { transition-delay: 300ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .spec-row[data-reveal], .manifesto-list > li[data-reveal], .spine-item[data-reveal], .masonry .project-card[data-reveal] {
+  .spec-row[data-reveal], .bento-tile[data-reveal], .spine-item[data-reveal], .masonry .project-card[data-reveal] {
     transition-delay: 0ms;
   }
 }
@@ -722,7 +750,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
       <h1>Кровля,<br>которая простоит<br><span class="accent-italic">десятилетия</span></h1>
       <p class="hero-lead">Проектируем, монтируем и обслуживаем кровли премиум-класса — от металлочерепицы до фальца. Работаем по договору с фиксированной сметой и гарантией до 15 лет.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="#contact">Оставить заявку на замер</a>
+        <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку на замер</a>
         <a class="btn btn-ghost btn-ghost-light btn-lg" href="#portfolio">Смотреть проекты</a>
       </div>
     </div>
@@ -805,36 +833,29 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
         <h2>Четыре причины<br>доверить нам кровлю</h2>
       </div>
 
-      <ol class="manifesto-list">
-        <li data-reveal>
-          <span class="m-num">01</span>
-          <div>
-            <h3>Гарантия до 15 лет</h3>
-            <p>На монтажные работы и материалы — прописана в договоре, а не только на словах.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <span class="m-num">02</span>
-          <div>
-            <h3>Собственная бригада</h3>
-            <p>Никакого субподряда: монтажники в штате, аттестованы производителями материалов.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <span class="m-num">03</span>
-          <div>
-            <h3>Фиксированная смета</h3>
-            <p>Стоимость не меняется после подписания договора — все риски мы считаем заранее.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <span class="m-num">04</span>
-          <div>
-            <h3>Строительный контроль</h3>
-            <p>Прораб проверяет каждый этап и присылает фотоотчёты — вы видите объект, даже если вас нет рядом.</p>
-          </div>
-        </li>
-      </ol>
+      <div class="bento-grid">
+        <article class="bento-tile bento-tile-lg" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+          <p class="bento-stat"><span class="bento-stat-num">15</span> лет</p>
+          <h3>Гарантия на монтаж и материалы</h3>
+          <p>Прописана в договоре, а не только на словах.</p>
+        </article>
+        <article class="bento-tile" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-crew"></use></svg>
+          <h3>Собственная бригада</h3>
+          <p>Никакого субподряда: монтажники в штате, аттестованы производителями материалов.</p>
+        </article>
+        <article class="bento-tile" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-quote-doc"></use></svg>
+          <h3>Фиксированная смета</h3>
+          <p>Стоимость не меняется после подписания договора — все риски мы считаем заранее.</p>
+        </article>
+        <article class="bento-tile bento-tile-wide" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-hardhat"></use></svg>
+          <h3>Строительный контроль</h3>
+          <p>Прораб проверяет каждый этап и присылает фотоотчёты — вы видите объект, даже если вас нет рядом.</p>
+        </article>
+      </div>
     </div>
     <div class="pitch-divider" aria-hidden="true"></div>
   </section>
@@ -1045,7 +1066,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
       <div class="cta-band-actions">
         <p>Оставьте заявку прямо сейчас — свяжемся с вами в ближайшее рабочее время и подберём удобную дату для замера.</p>
         <div class="cta-band-buttons">
-          <a class="btn btn-primary btn-lg" href="#contact">Оставить заявку</a>
+          <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку</a>
           <a class="header-phone header-phone-light" href="tel:[ТЕЛЕФОН]">
             <svg aria-hidden="true"><use href="#i-phone"/></svg>
             <span>[ТЕЛЕФОН]</span>
