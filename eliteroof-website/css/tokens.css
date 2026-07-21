@@ -1,0 +1,103 @@
+/* Design tokens — grounded in the material world of a working roof, not a
+   generic "editorial premium" template: cool zinc/slate paper instead of
+   warm cream, an expanded industrial grotesk instead of a serif+Inter
+   pairing, and a deep architectural gold as the one true accent (night
+   aerial shots of premium roofs, gold signage on a black storefront —
+   luxury-construction, not SaaS-mood-board). Gold is intentionally two
+   different values depending on ground: a deep bronze-gold on the light
+   paper background (bright gold fails AA as text there) and a brighter,
+   more vivid gold on dark surfaces (hero, why-us, footer) where it can
+   read at full saturation. Mono face is used *only* where digits are
+   actually tabular data (spec numbers, prices, stats) — it's a
+   spec-sheet reference, not decoration. */
+
+:root {
+  --bg: #eef1ee;
+  --surface: #ffffff;
+  --surface-warm: #e3e8e3;
+  --surface-dark: #12181a;
+  --fg: #131715;
+  --fg-2: #454e49;
+  --muted: #5c6963;
+  --muted-on-dark: #a7b7ae;
+  --fg-on-dark: #ffffff;
+  --border: #ccd6cd;
+  --border-soft: #e1e8e2;
+  --accent: #7d5d1e;
+  --accent-on: #ffffff;
+  --accent-hover: #6a4f19;
+  --accent-active: #583f14;
+  --accent-on-dark: #dcae54;
+  --accent-on-dark-ink: #1a1408;
+  --success: #2f8f52;
+  --warn: #c4872c;
+  --danger: #b23b3b;
+
+  --font-display: "Archivo Expanded", "Arial Narrow", sans-serif;
+  --font-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 3.75rem;
+  --text-4xl: 5.25rem;
+
+  --leading-body: 1.58;
+  --leading-tight: 1.05;
+  --tracking-display: -0.02em;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  --section-y-desktop: 112px;
+  --section-y-tablet: 80px;
+  --section-y-phone: 56px;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-pill: 9999px;
+
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 24px 64px rgba(28, 27, 25, 0.12);
+  --focus-ring: 0 0 0 4px rgba(125, 93, 30, 0.32);
+
+  --motion-fast: 170ms;
+  --motion-base: 280ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --container-max: 1160px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12160f;
+    --surface: #1a201b;
+    --surface-warm: #212a22;
+    --fg: #eef1ec;
+    --fg-2: #cbd6cf;
+    --muted: #93a196;
+    --border: #34413a;
+    --border-soft: #232c26;
+    --accent: #dcae54;
+    --accent-on: #1a1408;
+    --accent-hover: #e6bd6d;
+    --accent-active: #efc985;
+    --elev-raised: 0 24px 64px rgba(0, 0, 0, 0.45);
+    --focus-ring: 0 0 0 4px rgba(220, 174, 84, 0.32);
+  }
+}

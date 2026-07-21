@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<!--
+  EliteRoof — redesign built on placeholder business data.
+  Everything in [БРАКЕТАХ] (phone, address, prices, stats, testimonial names, INN)
+  is a placeholder and MUST be replaced with real company data before launch.
+  Design tokens adapted from open-design's "premium" design system
+  (github.com/nexu-io/open-design, design-systems/premium).
+-->
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12181a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2312181a'/%3E%3Cpath d='M4 12 12 5l8 7M6 11v7h12v-7' fill='none' stroke='%23dcae54' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>ELITEROOF — премиальные кровельные работы под ключ | [ГОРОД]</title>
+<meta name="description" content="ELITEROOF — монтаж и ремонт кровли любой сложности: металлочерепица, мягкая и фальцевая кровля, гидро- и теплоизоляция, водостоки. Гарантия до 15 лет, фиксированная смета, работаем в [ГОРОД] и области.">
+<link rel="canonical" href="https://eliteroof.info/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://eliteroof.info/">
+<meta property="og:site_name" content="ELITEROOF">
+<meta property="og:title" content="ELITEROOF — премиальные кровельные работы под ключ">
+<meta property="og:description" content="Монтаж и ремонт кровли: металлочерепица, мягкая и фальцевая кровля, гидро- и теплоизоляция, водостоки. Гарантия до 15 лет.">
+<!-- og:image — placeholder path; supply a real 1200x630 image before launch -->
+<meta property="og:image" content="https://eliteroof.info/assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ELITEROOF — кровельные работы премиального уровня">
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ELITEROOF — премиальные кровельные работы под ключ">
+<meta name="twitter:description" content="Монтаж и ремонт кровли: металлочерепица, мягкая и фальцевая кровля, гидро- и теплоизоляция, водостоки.">
+<meta name="twitter:image" content="https://eliteroof.info/assets/img/og-cover.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+
+<!--
+  JSON-LD structured data (schema.org RoofingContractor, a specific subtype of
+  HomeAndConstructionBusiness/LocalBusiness — search engines that don't know
+  the specific type fall back to the parent type, so there's no compatibility
+  loss). All bracketed values are placeholders — replace before launch.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "name": "ELITEROOF",
+  "alternateName": "ЭлитРуф",
+  "url": "https://eliteroof.info/",
+  "image": "https://eliteroof.info/assets/img/og-cover.jpg",
+  "description": "Премиальные кровельные работы под ключ: монтаж и ремонт кровли, металлочерепица, мягкая кровля, фальцевая кровля, гидро- и теплоизоляция, водостоки.",
+  "telephone": "[ТЕЛЕФОН]",
+  "taxID": "[ИНН]",
+  "priceRange": "[ЦЕНОВОЙ ДИАПАЗОН]",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[АДРЕС]",
+    "addressLocality": "[ГОРОД]",
+    "addressCountry": "RU"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": "[ШИРОТА]", "longitude": "[ДОЛГОТА]" },
+  "openingHours": "[ГРАФИК РАБОТЫ]",
+  "areaServed": "[ГОРОД]",
+  "sameAs": ["[ССЫЛКА НА VK]", "[ССЫЛКА НА TELEGRAM]"],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Монтаж кровли" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ремонт кровли" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Металлочерепица" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Мягкая кровля" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Фальцевая кровля" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Гидро- и теплоизоляция" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Водостоки" } }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<!-- Icon sprite: hand-drawn line icons, stroke=currentColor -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-roof" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v9h14v-9"/><path d="M9 19v-6h6v6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.6 3.2 7.9 8 9 4.8-1.1 8-4.4 8-9V6l-8-3Z"/><path d="M8.5 12.2l2.3 2.3 4.5-4.7"/></symbol>
+  <symbol id="i-crew" viewBox="0 0 24 24"><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="16" cy="8.5" r="2"/><path d="M3 20v-1.5c0-2.5 2.3-4.5 5.5-4.5s5.5 2 5.5 4.5V20"/><path d="M14.2 14.3c2.6.2 4.8 2 4.8 4.4V20"/></symbol>
+  <symbol id="i-quote-doc" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5"/></symbol>
+  <symbol id="i-hardhat" viewBox="0 0 24 24"><path d="M4 15a8 8 0 0 1 16 0"/><path d="M2.5 15h19"/><path d="M12 6.5V4"/><rect x="9.5" y="15" width="5" height="3" rx="0.8"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5 9 6c.4.7.3 1.4-.3 2l-1.3 1.2a13 13 0 0 0 6.4 6.4L15 14.3c.6-.6 1.3-.7 2-.3l2.5 2.5c.6.6.6 1.4 0 2l-1 1c-.8.8-2.1 1.1-3.2.7C10.6 18.6 5.4 13.4 3.8 8.7c-.4-1.1-.1-2.4.7-3.2l1-1c.6-.6 1.4-.6 1.9 0Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="M4 6.5l8 6.5 8-6.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3.2 14.6 9l6.3.6-4.8 4.2 1.4 6.2L12 16.9l-5.5 3.1 1.4-6.2-4.8-4.2L9.4 9 12 3.2Z"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.8 6 11a6 6 0 0 1-12 0c0-4.2 6-11 6-11Z"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="6" rx="1" transform="rotate(-8 12 12)"/><path d="M7 10.3l.6 2M11 9.6l.6 2M15 8.9l.6 2" transform="rotate(-8 12 12)"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><rect x="2.5" y="8" width="11" height="8" rx="1"/><path d="M13.5 11h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M4 7l16 10M20 7 4 17"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M8.5 14l2 2 4.5-4.5"/></symbol>
+
+  <!-- Isometric "material block" illustrations for portfolio cards — stand in for
+       real project photography until the client supplies real photos. Each is an
+       isometric cube (roof pitch / gable / wall face) with a texture clipped to the
+       top face that echoes the named material. Colour comes from currentColor. -->
+  <symbol id="iso-seam" viewBox="0 0 200 200">
+    <clipPath id="iso-seam-clip"><polygon points="100,36 172,78 100,120 28,78"/></clipPath>
+    <polygon points="28,78 100,120 100,184 28,142" fill="currentColor" opacity="0.5"/>
+    <polygon points="172,78 100,120 100,184 172,142" fill="currentColor" opacity="0.78"/>
+    <polygon points="100,36 172,78 100,120 28,78" fill="currentColor"/>
+    <g clip-path="url(#iso-seam-clip)" stroke="rgba(28,20,10,0.35)" stroke-width="3" stroke-linecap="round">
+      <line x1="118" y1="47" x2="46" y2="89"/>
+      <line x1="136" y1="57" x2="64" y2="99"/>
+      <line x1="154" y1="68" x2="82" y2="110"/>
+    </g>
+    <g fill="none" stroke="rgba(20,14,8,0.55)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="100,36 172,78 100,120 28,78"/>
+      <polygon points="28,78 100,120 100,184 28,142"/>
+      <polygon points="172,78 100,120 100,184 172,142"/>
+    </g>
+  </symbol>
+
+  <symbol id="iso-tile" viewBox="0 0 200 200">
+    <polygon points="28,78 100,120 100,184 28,142" fill="currentColor" opacity="0.5"/>
+    <polygon points="172,78 100,120 100,184 172,142" fill="currentColor" opacity="0.78"/>
+    <polygon points="100,36 172,78 100,120 28,78" fill="currentColor"/>
+    <g fill="rgba(28,20,10,0.4)">
+      <circle cx="100" cy="57" r="4.5"/><circle cx="82" cy="67.5" r="4.5"/><circle cx="64" cy="78" r="4.5"/>
+      <circle cx="118" cy="67.5" r="4.5"/><circle cx="100" cy="78" r="4.5"/><circle cx="82" cy="88.5" r="4.5"/>
+      <circle cx="136" cy="78" r="4.5"/><circle cx="118" cy="88.5" r="4.5"/><circle cx="100" cy="99" r="4.5"/>
+    </g>
+    <g fill="none" stroke="rgba(20,14,8,0.55)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="100,36 172,78 100,120 28,78"/>
+      <polygon points="28,78 100,120 100,184 28,142"/>
+      <polygon points="172,78 100,120 100,184 172,142"/>
+    </g>
+  </symbol>
+
+  <symbol id="iso-shingle" viewBox="0 0 200 200">
+    <polygon points="28,78 100,120 100,184 28,142" fill="currentColor" opacity="0.5"/>
+    <polygon points="172,78 100,120 100,184 172,142" fill="currentColor" opacity="0.78"/>
+    <polygon points="100,36 172,78 100,120 28,78" fill="currentColor"/>
+    <g fill="none" stroke="rgba(28,20,10,0.4)" stroke-width="2.5" stroke-linecap="round">
+      <path d="M55,95 q15,-9 30,0"/><path d="M90,102 q15,-9 30,0"/><path d="M125,88 q15,-9 30,0"/>
+      <path d="M70,73 q15,-9 30,0"/><path d="M105,80 q15,-9 30,0"/>
+    </g>
+    <g fill="none" stroke="rgba(20,14,8,0.55)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="100,36 172,78 100,120 28,78"/>
+      <polygon points="28,78 100,120 100,184 28,142"/>
+      <polygon points="172,78 100,120 100,184 172,142"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="logo" href="#top" aria-label="ELITEROOF — на главную">
+      <svg class="logo-mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-roof"/></svg>
+      <span class="logo-text">ELITEROOF<span class="logo-sub">кровельные работы</span></span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#why">Преимущества</a></li>
+        <li><a href="#process">Процесс</a></li>
+        <li><a href="#portfolio">Портфолио</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#pricing">Цены</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="#contact">
+        <svg aria-hidden="true"><use href="#i-phone"/></svg>
+        <span>[ТЕЛЕФОН]</span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="#contact">Бесплатный замер</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">
+        <svg aria-hidden="true" class="icon-open"><use href="#i-menu"/></svg>
+        <svg aria-hidden="true" class="icon-close"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blueprint" aria-hidden="true">
+      <canvas class="hero-canvas" id="hero-canvas"></canvas>
+      <svg class="hero-illustration" viewBox="0 0 480 460" preserveAspectRatio="xMidYMid meet">
+        <path class="hi-roof" d="M50 290 L240 80 L430 290" />
+        <path class="hi-wall" d="M96 290 L96 370 L384 370 L384 290" />
+        <path class="hi-ridge" d="M240 80 L240 40" />
+        <circle class="hi-dot" cx="240" cy="40" r="5" />
+        <path class="hi-dim" d="M150 220 L150 290" />
+        <path class="hi-dim" d="M330 220 L330 290" />
+        <path class="hi-tick" d="M142 220 L158 220 M142 290 L158 290" />
+        <path class="hi-tick" d="M322 220 L338 220 M322 290 L338 290" />
+        <path class="hi-seam" d="M96 290 L240 170 L384 290" />
+      </svg>
+    </div>
+    <div class="container hero-inner" data-reveal>
+      <p class="eyebrow eyebrow-light">Кровельная компания полного цикла</p>
+      <h1>Кровля,<br>которая простоит<br><span class="accent-marked">десятилетия</span></h1>
+      <p class="hero-lead">Проектируем, монтируем и обслуживаем кровли премиум-класса — от металлочерепицы до фальца. Работаем по договору с фиксированной сметой и гарантией до 15 лет.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку на замер</a>
+        <a class="btn btn-ghost btn-ghost-light btn-lg" href="#portfolio">Смотреть проекты</a>
+      </div>
+    </div>
+    <div class="hero-ledger">
+      <div class="container">
+        <dl class="hero-stats">
+          <div><dt>[12+]</dt><dd>лет на рынке</dd></div>
+          <div><dt>[300+]</dt><dd>сданных объектов</dd></div>
+          <div><dt>[15] лет</dt><dd>максимальная гарантия</dd></div>
+          <div><dt>[100]%</dt><dd>фиксация сметы в договоре</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="pitch-divider pitch-divider-light" aria-hidden="true"></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head section-head-split" data-reveal>
+        <h2>Кровельные работы<br>любой сложности</h2>
+        <div>
+          <p class="eyebrow">Услуги</p>
+          <p class="section-lead">От расчёта стропильной системы до финального водостока — берём объект под ключ или подключаемся на любом этапе.</p>
+        </div>
+      </div>
+
+      <div class="spec-list">
+        <article class="spec-row" data-reveal>
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-roof"/></svg>
+          <h3>Металлочерепица</h3>
+          <p>Монтаж кровли из металлочерепицы ведущих производителей с полным циклом: обрешётка, утепление, доборные элементы.</p>
+          <a class="spec-link" href="#contact">Обсудить →</a>
+        </article>
+        <article class="spec-row" data-reveal>
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-drop"/></svg>
+          <h3>Мягкая кровля</h3>
+          <p>Битумная и полимерная черепица для сложных архитектурных форм — куполов, эркеров, ломаных скатов.</p>
+          <a class="spec-link" href="#contact">Обсудить →</a>
+        </article>
+        <article class="spec-row" data-reveal>
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-ruler"/></svg>
+          <h3>Фальцевая кровля</h3>
+          <p>Премиальный фальц из меди, цинк-титана и стали с двойным стоячим замком — для домов, где кровля видна издалека.</p>
+          <a class="spec-link" href="#contact">Обсудить →</a>
+        </article>
+        <article class="spec-row" data-reveal>
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-hardhat"/></svg>
+          <h3>Ремонт и реставрация</h3>
+          <p>Устранение протечек, замена повреждённых участков, диагностика кровельного пирога перед сезоном.</p>
+          <a class="spec-link" href="#contact">Обсудить →</a>
+        </article>
+        <article class="spec-row" data-reveal>
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-shield"/></svg>
+          <h3>Гидро- и теплоизоляция</h3>
+          <p>Влаго-, паро- и теплоизоляционные системы «под ключ» — от подбора материалов до финального контроля швов.</p>
+          <a class="spec-link" href="#contact">Обсудить →</a>
+        </article>
+        <article class="spec-row" data-reveal>
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-snow"/></svg>
+          <h3>Водостоки и снегозадержатели</h3>
+          <p>Организованный водоотвод и системы снегозадержания, рассчитанные под ваш регион и уклон кровли.</p>
+          <a class="spec-link" href="#contact">Обсудить →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-manifesto" id="why">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow eyebrow-light">Почему ELITEROOF</p>
+        <h2>Четыре причины<br>доверить нам кровлю</h2>
+      </div>
+
+      <div class="bento-grid">
+        <article class="bento-tile bento-tile-lg" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+          <p class="bento-stat"><span class="bento-stat-num">15</span> лет</p>
+          <h3>Гарантия на монтаж и материалы</h3>
+          <p>Прописана в договоре, а не только на словах.</p>
+        </article>
+        <article class="bento-tile" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-crew"></use></svg>
+          <h3>Собственная бригада</h3>
+          <p>Никакого субподряда: монтажники в штате, аттестованы производителями материалов.</p>
+        </article>
+        <article class="bento-tile" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-quote-doc"></use></svg>
+          <h3>Фиксированная смета</h3>
+          <p>Стоимость не меняется после подписания договора — все риски мы считаем заранее.</p>
+        </article>
+        <article class="bento-tile bento-tile-wide" data-reveal>
+          <svg class="bento-icon" aria-hidden="true"><use href="#i-hardhat"></use></svg>
+          <h3>Строительный контроль</h3>
+          <p>Прораб проверяет каждый этап и присылает фотоотчёты — вы видите объект, даже если вас нет рядом.</p>
+        </article>
+      </div>
+    </div>
+    <div class="pitch-divider" aria-hidden="true"></div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-head section-head-split" data-reveal>
+        <h2>Путь от заявки<br>до гарантийного талона</h2>
+        <p class="eyebrow">Как мы работаем</p>
+      </div>
+
+      <ol class="spine">
+        <li class="spine-item" data-reveal>
+          <span class="spine-num">01</span>
+          <div><h3>Заявка</h3><p>Оставляете заявку на сайте или звоните — перезваниваем в течение [15 минут] в рабочее время.</p></div>
+        </li>
+        <li class="spine-item" data-reveal>
+          <span class="spine-num">02</span>
+          <div><h3>Замер</h3><p>Инженер выезжает на объект, снимает точные размеры и консультирует по материалам.</p></div>
+        </li>
+        <li class="spine-item" data-reveal>
+          <span class="spine-num">03</span>
+          <div><h3>Смета и договор</h3><p>Фиксируем итоговую стоимость и сроки, подписываем договор с гарантийными обязательствами.</p></div>
+        </li>
+        <li class="spine-item" data-reveal>
+          <span class="spine-num">04</span>
+          <div><h3>Монтаж</h3><p>Собственная бригада выполняет работы по графику, прораб ведёт фотоотчёт на каждом этапе.</p></div>
+        </li>
+        <li class="spine-item" data-reveal>
+          <span class="spine-num">05</span>
+          <div><h3>Сдача и гарантия</h3><p>Подписываем акт приёмки, выдаём гарантийный талон и остаёмся на связи весь гарантийный срок.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section section-alt" id="portfolio">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Портфолио</p>
+        <h2>Реализованные объекты</h2>
+        <p class="section-lead">Каждый объект отмечен схемой покрытия — тип материала и укладки. Фотографии объектов добавляются по мере съёмки готовых работ.</p>
+      </div>
+
+      <div class="masonry">
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-seam" aria-hidden="true"><svg class="project-iso"><use href="#iso-seam"/></svg></div>
+          <figcaption>
+            <h3>Фальцевая кровля, [420] м²</h3>
+            <p>[Название посёлка / город]</p>
+          </figcaption>
+        </figure>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-tile" aria-hidden="true"><svg class="project-iso"><use href="#iso-tile"/></svg></div>
+          <figcaption>
+            <h3>Металлочерепица, [280] м²</h3>
+            <p>[Название посёлка / город]</p>
+          </figcaption>
+        </figure>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-shingle" aria-hidden="true"><svg class="project-iso"><use href="#iso-shingle"/></svg></div>
+          <figcaption>
+            <h3>Мягкая кровля, [190] м²</h3>
+            <p>[Название посёлка / город]</p>
+          </figcaption>
+        </figure>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-tile" aria-hidden="true">
+            <svg class="project-iso"><use href="#iso-tile"/></svg>
+            <span class="project-patch"><svg><use href="#i-check"/></svg></span>
+          </div>
+          <figcaption>
+            <h3>Ремонт кровли, [150] м²</h3>
+            <p>[Название посёлка / город]</p>
+          </figcaption>
+        </figure>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-seam" aria-hidden="true"><svg class="project-iso"><use href="#iso-seam"/></svg></div>
+          <figcaption>
+            <h3>Фальцевая кровля, [610] м²</h3>
+            <p>[Название посёлка / город]</p>
+          </figcaption>
+        </figure>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-tile" aria-hidden="true"><svg class="project-iso"><use href="#iso-tile"/></svg></div>
+          <figcaption>
+            <h3>Металлочерепица, [340] м²</h3>
+            <p>[Название посёлка / город]</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <h2>Что говорят клиенты</h2>
+        <p class="section-lead">Отзывы клиентов публикуются по завершении объекта — с их согласия.</p>
+      </div>
+
+      <div class="reviews-layout" data-reveal>
+        <blockquote class="review-featured">
+          <svg class="review-quote-mark" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V13.6C0 6 5.2.8 12.8 0l1.4 3.6C9 4.8 6 8 6 12h6.8V24H0Zm17.2 0V13.6C17.2 6 22.4.8 30 0l1.4 3.6c-5.2 1.2-8.2 4.4-8.2 8.4H30V24H17.2Z"/></svg>
+          <div class="review-stars" aria-label="Оценка 5 из 5">
+            <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+          </div>
+          <p>«[Пример отзыва: бригада уложилась в срок, каждый этап работ был на фото в чате, никаких доплат сверх согласованной сметы — ровно то, что обещали на замере.]»</p>
+          <cite>[Имя Фамилия] — [Город], [тип кровли]</cite>
+        </blockquote>
+        <div class="review-side">
+          <blockquote class="review-mini">
+            <div class="review-stars" aria-label="Оценка 5 из 5">
+              <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+            </div>
+            <p>«[Пример отзыва: перекрывали крышу зимой, объяснили технологию, результат — без нареканий.]»</p>
+            <cite>[Имя Фамилия] — [Город]</cite>
+          </blockquote>
+          <blockquote class="review-mini">
+            <div class="review-stars" aria-label="Оценка 5 из 5">
+              <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+            </div>
+            <p>«[Пример отзыва: сделали фальц сложной формы, качество швов проверяли отдельно — довольны результатом.]»</p>
+            <cite>[Имя Фамилия] — [Город]</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section section-alt" id="pricing">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <h2>Ориентировочная стоимость работ</h2>
+        <p class="section-lead">Итоговая цена рассчитывается после бесплатного замера и зависит от сложности кровли, материала и региона.</p>
+      </div>
+
+      <div class="price-table" data-reveal>
+        <div class="price-row price-row-head">
+          <span></span><span class="price-name">Тип кровли</span><span class="price-value">Стоимость работ</span><span></span>
+        </div>
+        <div class="price-row">
+          <svg class="price-icon" aria-hidden="true"><use href="#i-roof"/></svg><span class="price-name">Металлочерепица</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+        </div>
+        <div class="price-row">
+          <svg class="price-icon" aria-hidden="true"><use href="#i-drop"/></svg><span class="price-name">Мягкая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+        </div>
+        <div class="price-row">
+          <svg class="price-icon" aria-hidden="true"><use href="#i-ruler"/></svg><span class="price-name">Фальцевая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+        </div>
+        <div class="price-row">
+          <svg class="price-icon" aria-hidden="true"><use href="#i-hardhat"/></svg><span class="price-name">Ремонт и реставрация</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <h2>Частые вопросы о кровельных работах</h2>
+      </div>
+
+      <div class="faq-list" data-reveal>
+        <div class="faq-item">
+          <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-1">Сколько времени занимает монтаж кровли?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+          <div class="faq-panel" id="faq-panel-1" aria-hidden="true"><p>Зависит от площади, конструкции стропильной системы и материала: простая скатная кровля занимает меньше времени, чем объект с ендовами, мансардными окнами или сложной геометрией. Точные сроки называем после замера и фиксируем в договоре.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-2">Работаете ли вы в зимний период?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+          <div class="faq-panel" id="faq-panel-2" aria-hidden="true"><p>Монтаж металлочерепицы и фальца возможен почти круглый год. А вот битумную мягкую кровлю рекомендуем укладывать при температуре не ниже +5°C — иначе материал не даёт нужной адгезии. Подскажем подходящее окно уже на этапе замера.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-3">Даёте ли вы гарантию на кровлю?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+          <div class="faq-panel" id="faq-panel-3" aria-hidden="true"><p>Да — до 15 лет, и на монтаж, и на материалы. Срок зависит от типа кровли и указывается в договоре и гарантийном талоне, которые остаются у вас на руках.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-4">Что входит в бесплатный замер?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+          <div class="faq-panel" id="faq-panel-4" aria-hidden="true"><p>Инженер обмеряет скаты и периметр, фотографирует фасад и текущую кровлю, консультирует по материалам под ваш бюджет и архитектуру дома, и оставляет предварительный расчёт стоимости на руках.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-5">Можно ли заказать только материалы без монтажа?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+          <div class="faq-panel" id="faq-panel-5" aria-hidden="true"><p>Можно — работаем и под ключ, и на отдельных этапах: только поставка, только монтаж по вашему проекту, или совместно с вашим прорабом. Формат обсуждаем на консультации.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-6">Как оформляется оплата?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+          <div class="faq-panel" id="faq-panel-6" aria-hidden="true"><p>По договору и поэтапно: аванс на закупку материалов после подписания, остаток — по акту приёмки выполненных работ. Разбивку платежей фиксируем вместе со сметой.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container cta-band-inner" data-reveal>
+      <div>
+        <p class="eyebrow eyebrow-light">Следующий шаг</p>
+        <h2>Готовы обсудить<br>ваш объект?</h2>
+      </div>
+      <div class="cta-band-actions">
+        <p>Оставьте заявку прямо сейчас — свяжемся с вами в ближайшее рабочее время и подберём удобную дату для замера.</p>
+        <div class="cta-band-buttons">
+          <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку</a>
+          <a class="header-phone header-phone-light" href="#contact">
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>
+            <span>[ТЕЛЕФОН]</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-alt" id="contact">
+    <div class="container contact-grid">
+      <div data-reveal>
+        <p class="eyebrow">Контакты</p>
+        <h2>Оставьте заявку на бесплатный замер</h2>
+        <p class="section-lead">Инженер свяжется с вами, уточнит детали объекта и запишет на бесплатный выезд в удобное время.</p>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <label for="f-name">Имя</label>
+            <input type="text" id="f-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-row">
+            <label for="f-phone">Телефон</label>
+            <input type="tel" id="f-phone" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__">
+          </div>
+          <div class="form-row">
+            <label for="f-message">Комментарий</label>
+            <textarea id="f-message" name="message" rows="3" placeholder="Тип кровли, площадь, адрес объекта"></textarea>
+          </div>
+          <label class="form-consent">
+            <input type="checkbox" id="f-consent" name="consent" required>
+            <span>Согласен(на) на обработку персональных данных</span>
+          </label>
+          <button type="submit" class="btn btn-primary btn-lg">Отправить заявку</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <aside class="contact-card" data-reveal>
+        <ul class="contact-info">
+          <li>
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>
+            <div><strong>Телефон</strong><a href="#contact">[ТЕЛЕФОН]</a></div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-mail"/></svg>
+            <div><strong>Email</strong><a href="#contact">[EMAIL]</a></div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <div><strong>Адрес</strong><span>[Город, улица, дом]</span></div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-calendar"/></svg>
+            <div><strong>График работы</strong><span>[Пн–Сб, 9:00–19:00]</span></div>
+          </li>
+        </ul>
+        <div class="map-placeholder" aria-hidden="true">[КАРТА / MAP EMBED]</div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="logo" href="#top">
+        <svg class="logo-mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-roof"/></svg>
+        <span class="logo-text">ELITEROOF</span>
+      </a>
+      <p>Кровельные работы премиум-класса: проектирование, монтаж, ремонт и обслуживание.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Услуги">
+      <h2>Услуги</h2>
+      <ul>
+        <li><a href="#services">Металлочерепица</a></li>
+        <li><a href="#services">Мягкая кровля</a></li>
+        <li><a href="#services">Фальцевая кровля</a></li>
+        <li><a href="#services">Ремонт и реставрация</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav" aria-label="Компания">
+      <h2>Компания</h2>
+      <ul>
+        <li><a href="#why">Преимущества</a></li>
+        <li><a href="#portfolio">Портфолио</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="footer-contact">
+      <h2>Связаться</h2>
+      <a href="#contact">[ТЕЛЕФОН]</a>
+      <a href="#contact">[EMAIL]</a>
+    </div>
+  </div>
+  <div class="container footer-legal">
+    <p>© <span id="year"></span> ELITEROOF. Все права защищены. ИНН [ХХХХХХХХХХ], ОГРН [ХХХХХХХХХХХХХ].</p>
+    <p><a href="#">Политика конфиденциальности</a></p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script type="module" src="assets/js/hero-3d.js"></script>
+</body>
+</html>
