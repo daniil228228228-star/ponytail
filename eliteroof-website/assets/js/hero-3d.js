@@ -63,19 +63,22 @@
     // ---------------------------------------------------------------
     const house = new THREE.Group();
 
-    // Both materials carry a constant `emissive` floor so no face ever reads
-    // as pure background-matching black on the unlit side of a rotation —
-    // without it the walls were nearly indistinguishable from --surface-dark
-    // for roughly a quarter of every turn.
+    // Standing-seam metal roof, not a shingle roof — matches the site's
+    // actual #1 listed service (металлочерепица) and its cool zinc/patina
+    // material story instead of the old warm bronze. Both materials carry
+    // a constant `emissive` floor so no face ever reads as pure
+    // background-matching black on the unlit side of a rotation — without
+    // it the walls were nearly indistinguishable from --surface-dark for
+    // roughly a quarter of every turn.
     const wallMat = new THREE.MeshStandardMaterial({
-      color: 0x3c3020, roughness: 0.78, metalness: 0.06,
-      emissive: 0x15100a, emissiveIntensity: 0.6,
+      color: 0x232b27, roughness: 0.82, metalness: 0.05,
+      emissive: 0x0e130f, emissiveIntensity: 0.6,
     });
     const roofMat = new THREE.MeshStandardMaterial({
-      color: 0x4a3620, roughness: 0.48, metalness: 0.22,
-      emissive: 0x1c1208, emissiveIntensity: 0.45,
+      color: 0x3d4c44, roughness: 0.32, metalness: 0.55,
+      emissive: 0x141c18, emissiveIntensity: 0.4,
     });
-    const accentMat = new THREE.MeshStandardMaterial({ color: 0xd3a273, roughness: 0.32, metalness: 0.6 });
+    const accentMat = new THREE.MeshStandardMaterial({ color: 0x93c1a9, roughness: 0.32, metalness: 0.5 });
 
     const wallW = 2.2;
     const wallH = 1.1;
@@ -104,7 +107,7 @@
     // blueprint line-art motif the flat SVG established.
     const roofEdges = new THREE.LineSegments(
       new THREE.EdgesGeometry(roofGeo, 20),
-      new THREE.LineBasicMaterial({ color: 0xd3a273, transparent: true, opacity: 0.55 })
+      new THREE.LineBasicMaterial({ color: 0x93c1a9, transparent: true, opacity: 0.55 })
     );
     roofEdges.position.y = wallH;
     house.add(roofEdges);
@@ -126,7 +129,7 @@
     // line" echo of the flat illustration's hi-dim/hi-tick marks.
     const baseEdges = new THREE.LineSegments(
       new THREE.EdgesGeometry(new THREE.BoxGeometry(wallW, wallH, wallD)),
-      new THREE.LineBasicMaterial({ color: 0xd3a273, transparent: true, opacity: 0.14 })
+      new THREE.LineBasicMaterial({ color: 0x93c1a9, transparent: true, opacity: 0.14 })
     );
     baseEdges.position.y = wallH / 2;
     house.add(baseEdges);
@@ -155,7 +158,7 @@
     const fill = new THREE.HemisphereLight(0x8a97ad, 0x1c1611, 0.55);
     scene.add(fill);
 
-    const rim = new THREE.DirectionalLight(0xd3a273, 1.1);
+    const rim = new THREE.DirectionalLight(0x93c1a9, 1.1);
     rim.position.set(-3.4, 2.2, -4.2);
     scene.add(rim);
 

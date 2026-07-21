@@ -1,30 +1,35 @@
-/* Design tokens adapted from open-design's "premium" design system
-   (github.com/nexu-io/open-design, design-systems/premium/tokens.css)
-   — warm white canvas, graphite type, bronze accent. Tuned for EliteRoof. */
+/* Design tokens — grounded in the material world of a working roof, not a
+   generic "editorial premium" template: cool zinc/slate paper instead of
+   warm cream, oxidized-copper patina as the one true accent (real roofers
+   see this color on flashing and church spires, not on a mood board), and
+   an expanded industrial grotesk instead of a serif+Inter pairing. Mono
+   face is used *only* where digits are actually tabular data (spec
+   numbers, prices, stats) — it's a spec-sheet reference, not decoration. */
 
 :root {
-  --bg: #faf8f4;
+  --bg: #eef1ee;
   --surface: #ffffff;
-  --surface-warm: #f0e7d8;
-  --surface-dark: #1c1b19;
-  --fg: #1c1b19;
-  --fg-2: #4b4740;
-  --muted: #746d63;
-  --muted-on-dark: #c9c2b4;
+  --surface-warm: #e3e8e3;
+  --surface-dark: #12181a;
+  --fg: #131715;
+  --fg-2: #454e49;
+  --muted: #5c6963;
+  --muted-on-dark: #a7b7ae;
   --fg-on-dark: #ffffff;
-  --border: #ded6c9;
-  --border-soft: #eee7dc;
-  --accent: #a06a3b;
+  --border: #ccd6cd;
+  --border-soft: #e1e8e2;
+  --accent: #3f6353;
   --accent-on: #ffffff;
-  --accent-hover: #8a5a30;
-  --accent-active: #764a27;
-  --accent-on-dark: #d3a273;
-  --success: #32724c;
+  --accent-hover: #345345;
+  --accent-active: #2a4438;
+  --accent-on-dark: #93c1a9;
+  --success: #2f8f52;
   --warn: #c4872c;
-  --danger: #a64343;
+  --danger: #b23b3b;
 
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Archivo Expanded", "Arial Narrow", sans-serif;
+  --font-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -74,19 +79,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #17130f;
-    --surface: #211c17;
-    --surface-warm: #2a2119;
-    --fg: #f4efe6;
-    --fg-2: #d8cfc0;
-    --muted: #a89d8b;
-    --border: #3a322a;
-    --border-soft: #2a241d;
-    --accent: #c68a53;
-    --accent-on: #1c1300;
-    --accent-hover: #d59c68;
-    --accent-active: #e0ad7c;
+    --bg: #12160f;
+    --surface: #1a201b;
+    --surface-warm: #212a22;
+    --fg: #eef1ec;
+    --fg-2: #cbd6cf;
+    --muted: #93a196;
+    --border: #34413a;
+    --border-soft: #232c26;
+    --accent: #7bab8f;
+    --accent-on: #0d1710;
+    --accent-hover: #8fbfa2;
+    --accent-active: #a3ceb5;
     --elev-raised: 0 24px 64px rgba(0, 0, 0, 0.45);
-    --focus-ring: 0 0 0 4px rgba(198, 138, 83, 0.32);
+    --focus-ring: 0 0 0 4px rgba(123, 171, 143, 0.32);
   }
 }
