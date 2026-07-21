@@ -87,23 +87,82 @@
     walls.position.y = wallH / 2;
     house.add(walls);
 
+    // Ground plane — a subtle dark disc so the house and path lights read
+    // as sitting on something instead of floating in mid-air. Deliberately
+    // unadorned (no grid of its own) so it doesn't fight the
+    // `.hero-blueprint` CSS grid backdrop already sitting behind the
+    // canvas in the page.
+    const groundMat = new THREE.MeshStandardMaterial({
+      color: 0x0b0e0a, roughness: 0.95, metalness: 0, transparent: true, opacity: 0.8,
+    });
+    const ground = new THREE.Mesh(new THREE.CircleGeometry(2.2, 24), groundMat);
+    ground.rotation.x = -Math.PI / 2;
+    house.add(ground);
+
     // Warm lit windows — unlit (MeshBasic, ignores the scene's lighting so
     // it always reads as "glowing" regardless of rotation angle), the
     // single biggest lever for the "premium house at night" mood this
     // model is going for. A few on the front face, a couple on the side so
     // the house still reads as inhabited from any angle mid-rotation.
+    // Each window is now a small group: a larger, dimmer "bloom" plane
+    // behind the glass (fakes a soft glow with zero extra render passes),
+    // the bright pane itself, and a thin dark mullion cross on top — so it
+    // reads as an actual window with muntins, not a flat glowing rectangle.
     const windowMat = new THREE.MeshBasicMaterial({ color: 0xffd28c });
     const windowGeo = new THREE.PlaneGeometry(0.17, 0.24);
+    const glowMat = new THREE.MeshBasicMaterial({
+      color: 0xffd28c, transparent: true, opacity: 0.16, depthWrite: false,
+    });
+    const glowGeo = new THREE.PlaneGeometry(0.17 * 1.8, 0.24 * 1.8);
+    const mullionMat = new THREE.MeshBasicMaterial({ color: 0x18140f });
+    const mullionVGeo = new THREE.PlaneGeometry(0.016, 0.24);
+    const mullionHGeo = new THREE.PlaneGeometry(0.17, 0.016);
+    // Pane sits proud of the wall face; the dim glow plane is tucked into
+    // the small gap between the wall and the pane so nothing z-fights.
+    const paneOffset = 0.006;
+    function makeWindow() {
+      const group = new THREE.Group();
+      const glow = new THREE.Mesh(glowGeo, glowMat);
+      glow.position.z = -0.004;
+      group.add(glow);
+      group.add(new THREE.Mesh(windowGeo, windowMat));
+      const barV = new THREE.Mesh(mullionVGeo, mullionMat);
+      barV.position.z = 0.003;
+      group.add(barV);
+      const barH = new THREE.Mesh(mullionHGeo, mullionMat);
+      barH.position.z = 0.003;
+      group.add(barH);
+      return group;
+    }
+    // Windows on all four faces (not just front + one side) — the model
+    // auto-rotates continuously, and with only two lit faces roughly half
+    // of every turn showed a flat dark box with no glow at all, the same
+    // "unlit side reads as a shapeless blob" problem the wall emissive
+    // floor above was added to fix. Fewer panes on the back/far side keeps
+    // the front the visual focus while still keeping *something* lit from
+    // any angle.
     const frontWindowY = wallH * 0.58;
     [-0.78, -0.28, 0.28, 0.78].forEach((x) => {
-      const win = new THREE.Mesh(windowGeo, windowMat);
-      win.position.set(x, frontWindowY, wallD / 2 + 0.002);
+      const win = makeWindow();
+      win.position.set(x, frontWindowY, wallD / 2 + paneOffset);
+      house.add(win);
+    });
+    [-0.5, 0.5].forEach((x) => {
+      const win = makeWindow();
+      win.position.set(x, frontWindowY, -(wallD / 2 + paneOffset));
+      win.rotation.y = Math.PI;
       house.add(win);
     });
     [-0.42, 0.42].forEach((z) => {
-      const win = new THREE.Mesh(windowGeo, windowMat);
-      win.position.set(wallW / 2 + 0.002, frontWindowY, z);
+      const win = makeWindow();
+      win.position.set(wallW / 2 + paneOffset, frontWindowY, z);
       win.rotation.y = Math.PI / 2;
+      house.add(win);
+    });
+    [-0.42, 0.42].forEach((z) => {
+      const win = makeWindow();
+      win.position.set(-(wallW / 2 + paneOffset), frontWindowY, z);
+      win.rotation.y = -Math.PI / 2;
       house.add(win);
     });
 
@@ -137,6 +196,38 @@
     ridge.position.set(0, wallH + roofApex, 0);
     house.add(ridge);
 
+    // Standing-seam metal roof ridges — thin raised ribs running from
+    // ridge to eave on each slope, evenly spaced across the roof's depth.
+    // This is the single most on-brand addition: a literal depiction of
+    // the standing-seam / fold-seam metal roofing (металлочерепица /
+    // фальцевая кровля) that's this company's headline service, instead
+    // of a flat painted slope.
+    const slopeLen = Math.hypot(roofHalfW, roofApex);
+    const seamMat = new THREE.MeshStandardMaterial({
+      color: 0xdcae54, roughness: 0.35, metalness: 0.6, transparent: true, opacity: 0.55,
+    });
+    const seamGeo = new THREE.BoxGeometry(slopeLen - 0.06, 0.012, 0.02);
+    const seamCount = 6;
+    const seamInset = 0.14; // keep seams clear of the front/back gable edges
+    const seamSpan = roofDepth - seamInset * 2;
+    [-1, 1].forEach((side) => {
+      const angle = Math.atan2(-roofApex, side * roofHalfW);
+      const nx = side * roofApex;
+      const ny = roofHalfW;
+      const nLen = Math.hypot(nx, ny);
+      for (let i = 0; i < seamCount; i++) {
+        const z = -seamSpan / 2 + (seamSpan * i) / (seamCount - 1);
+        const seam = new THREE.Mesh(seamGeo, seamMat);
+        seam.position.set(
+          (side * roofHalfW) / 2 + (nx / nLen) * 0.018,
+          wallH + roofApex / 2 + (ny / nLen) * 0.018,
+          z
+        );
+        seam.rotation.z = angle;
+        house.add(seam);
+      }
+    });
+
     // Small chimney for silhouette interest.
     const chimney = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.42, 0.16), wallMat);
     chimney.position.set(0.55, wallH + 0.62, -0.22);
@@ -153,6 +244,20 @@
     );
     baseEdges.position.y = wallH / 2;
     house.add(baseEdges);
+
+    // Landscape path lighting — a handful of small warm glow points along
+    // the front approach, echoing the reference photo's walkway lights.
+    // Kept deliberately minimal and unlit (MeshBasic) for cheapness.
+    const pathLightMat = new THREE.MeshBasicMaterial({ color: 0xffb35c });
+    const pathLightGeo = new THREE.SphereGeometry(0.02, 6, 5);
+    [
+      [-0.22, 0.18], [0.22, 0.34], [-0.3, 0.52],
+      [0.3, 0.68], [-0.2, 0.86], [0.2, 1.02],
+    ].forEach(([x, zOffset]) => {
+      const light = new THREE.Mesh(pathLightGeo, pathLightMat);
+      light.position.set(x, 0.012, wallD / 2 + zOffset);
+      house.add(light);
+    });
 
     house.rotation.x = -0.12;
     house.rotation.y = 0.5;
