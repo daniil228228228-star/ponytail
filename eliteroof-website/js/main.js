@@ -9,11 +9,12 @@
   const navToggle = document.getElementById('nav-toggle');
   const mainNav = document.getElementById('main-nav');
   if (navToggle && mainNav) {
-    // Below the 900px breakpoint the nav becomes an off-canvas panel that is
-    // visually collapsed (max-height: 0) but its links stay in the DOM, so
-    // without this they'd remain keyboard-focusable while invisible. `inert`
-    // removes them from the tab order and AT tree while collapsed.
-    const navCollapsesMql = window.matchMedia('(max-width: 900px)');
+    // Below the header's 1200px collapse breakpoint (see styles.css) the nav
+    // becomes an off-canvas panel that is visually collapsed (max-height: 0)
+    // but its links stay in the DOM, so without this they'd remain
+    // keyboard-focusable while invisible. `inert` removes them from the tab
+    // order and AT tree while collapsed.
+    const navCollapsesMql = window.matchMedia('(max-width: 1200px)');
     const syncNavInert = () => {
       const isOpen = mainNav.classList.contains('is-open');
       mainNav.toggleAttribute('inert', navCollapsesMql.matches && !isOpen);

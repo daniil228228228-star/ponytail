@@ -103,6 +103,58 @@
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M8.5 14l2 2 4.5-4.5"/></symbol>
+
+  <!-- Isometric "material block" illustrations for portfolio cards — stand in for
+       real project photography until the client supplies real photos. Each is an
+       isometric cube (roof pitch / gable / wall face) with a texture clipped to the
+       top face that echoes the named material. Colour comes from currentColor. -->
+  <symbol id="iso-seam" viewBox="0 0 200 200">
+    <clipPath id="iso-seam-clip"><polygon points="100,36 172,78 100,120 28,78"/></clipPath>
+    <polygon points="28,78 100,120 100,184 28,142" fill="currentColor" opacity="0.5"/>
+    <polygon points="172,78 100,120 100,184 172,142" fill="currentColor" opacity="0.78"/>
+    <polygon points="100,36 172,78 100,120 28,78" fill="currentColor"/>
+    <g clip-path="url(#iso-seam-clip)" stroke="rgba(28,20,10,0.35)" stroke-width="3" stroke-linecap="round">
+      <line x1="118" y1="47" x2="46" y2="89"/>
+      <line x1="136" y1="57" x2="64" y2="99"/>
+      <line x1="154" y1="68" x2="82" y2="110"/>
+    </g>
+    <g fill="none" stroke="rgba(20,14,8,0.55)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="100,36 172,78 100,120 28,78"/>
+      <polygon points="28,78 100,120 100,184 28,142"/>
+      <polygon points="172,78 100,120 100,184 172,142"/>
+    </g>
+  </symbol>
+
+  <symbol id="iso-tile" viewBox="0 0 200 200">
+    <polygon points="28,78 100,120 100,184 28,142" fill="currentColor" opacity="0.5"/>
+    <polygon points="172,78 100,120 100,184 172,142" fill="currentColor" opacity="0.78"/>
+    <polygon points="100,36 172,78 100,120 28,78" fill="currentColor"/>
+    <g fill="rgba(28,20,10,0.4)">
+      <circle cx="100" cy="57" r="4.5"/><circle cx="82" cy="67.5" r="4.5"/><circle cx="64" cy="78" r="4.5"/>
+      <circle cx="118" cy="67.5" r="4.5"/><circle cx="100" cy="78" r="4.5"/><circle cx="82" cy="88.5" r="4.5"/>
+      <circle cx="136" cy="78" r="4.5"/><circle cx="118" cy="88.5" r="4.5"/><circle cx="100" cy="99" r="4.5"/>
+    </g>
+    <g fill="none" stroke="rgba(20,14,8,0.55)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="100,36 172,78 100,120 28,78"/>
+      <polygon points="28,78 100,120 100,184 28,142"/>
+      <polygon points="172,78 100,120 100,184 172,142"/>
+    </g>
+  </symbol>
+
+  <symbol id="iso-shingle" viewBox="0 0 200 200">
+    <polygon points="28,78 100,120 100,184 28,142" fill="currentColor" opacity="0.5"/>
+    <polygon points="172,78 100,120 100,184 172,142" fill="currentColor" opacity="0.78"/>
+    <polygon points="100,36 172,78 100,120 28,78" fill="currentColor"/>
+    <g fill="none" stroke="rgba(28,20,10,0.4)" stroke-width="2.5" stroke-linecap="round">
+      <path d="M55,95 q15,-9 30,0"/><path d="M90,102 q15,-9 30,0"/><path d="M125,88 q15,-9 30,0"/>
+      <path d="M70,73 q15,-9 30,0"/><path d="M105,80 q15,-9 30,0"/>
+    </g>
+    <g fill="none" stroke="rgba(20,14,8,0.55)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="100,36 172,78 100,120 28,78"/>
+      <polygon points="28,78 100,120 100,184 28,142"/>
+      <polygon points="172,78 100,120 100,184 172,142"/>
+    </g>
+  </symbol>
 </svg>
 
 <header class="site-header" id="top">
@@ -143,6 +195,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-blueprint" aria-hidden="true">
+      <canvas class="hero-canvas" id="hero-canvas"></canvas>
       <svg class="hero-illustration" viewBox="0 0 480 460" preserveAspectRatio="xMidYMid meet">
         <path class="hi-roof" d="M50 290 L240 80 L430 290" />
         <path class="hi-wall" d="M96 290 L96 370 L384 370 L384 290" />
@@ -188,43 +241,43 @@
         </div>
       </div>
 
-      <div class="spec-list" data-reveal>
-        <article class="spec-row">
+      <div class="spec-list">
+        <article class="spec-row" data-reveal>
           <span class="spec-num">01</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-roof"/></svg>
           <h3>Металлочерепица</h3>
           <p>Монтаж кровли из металлочерепицы ведущих производителей с полным циклом: обрешётка, утепление, доборные элементы.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
-        <article class="spec-row">
+        <article class="spec-row" data-reveal>
           <span class="spec-num">02</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-drop"/></svg>
           <h3>Мягкая кровля</h3>
           <p>Битумная и полимерная черепица для сложных архитектурных форм — куполов, эркеров, ломаных скатов.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
-        <article class="spec-row">
+        <article class="spec-row" data-reveal>
           <span class="spec-num">03</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-ruler"/></svg>
           <h3>Фальцевая кровля</h3>
           <p>Премиальный фальц из меди, цинк-титана и стали с двойным стоячим замком — для домов, где кровля видна издалека.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
-        <article class="spec-row">
+        <article class="spec-row" data-reveal>
           <span class="spec-num">04</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-hardhat"/></svg>
           <h3>Ремонт и реставрация</h3>
           <p>Устранение протечек, замена повреждённых участков, диагностика кровельного пирога перед сезоном.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
-        <article class="spec-row">
+        <article class="spec-row" data-reveal>
           <span class="spec-num">05</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-shield"/></svg>
           <h3>Гидро- и теплоизоляция</h3>
           <p>Влаго-, паро- и теплоизоляционные системы «под ключ» — от подбора материалов до финального контроля швов.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
-        <article class="spec-row">
+        <article class="spec-row" data-reveal>
           <span class="spec-num">06</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-snow"/></svg>
           <h3>Водостоки и снегозадержатели</h3>
@@ -243,29 +296,29 @@
         <h2>Четыре причины<br>доверить нам кровлю</h2>
       </div>
 
-      <ol class="manifesto-list" data-reveal>
-        <li>
+      <ol class="manifesto-list">
+        <li data-reveal>
           <span class="m-num">01</span>
           <div>
             <h3>Гарантия до 15 лет</h3>
             <p>На монтажные работы и материалы — прописана в договоре, а не только на словах.</p>
           </div>
         </li>
-        <li>
+        <li data-reveal>
           <span class="m-num">02</span>
           <div>
             <h3>Собственная бригада</h3>
             <p>Никакого субподряда: монтажники в штате, аттестованы производителями материалов.</p>
           </div>
         </li>
-        <li>
+        <li data-reveal>
           <span class="m-num">03</span>
           <div>
             <h3>Фиксированная смета</h3>
             <p>Стоимость не меняется после подписания договора — все риски мы считаем заранее.</p>
           </div>
         </li>
-        <li>
+        <li data-reveal>
           <span class="m-num">04</span>
           <div>
             <h3>Строительный контроль</h3>
@@ -285,24 +338,24 @@
         <p class="eyebrow">Как мы работаем</p>
       </div>
 
-      <ol class="spine" data-reveal>
-        <li class="spine-item">
+      <ol class="spine">
+        <li class="spine-item" data-reveal>
           <span class="spine-num">01</span>
           <div><h3>Заявка</h3><p>Оставляете заявку на сайте или звоните — перезваниваем в течение [15 минут] в рабочее время.</p></div>
         </li>
-        <li class="spine-item">
+        <li class="spine-item" data-reveal>
           <span class="spine-num">02</span>
           <div><h3>Замер</h3><p>Инженер выезжает на объект, снимает точные размеры и консультирует по материалам.</p></div>
         </li>
-        <li class="spine-item">
+        <li class="spine-item" data-reveal>
           <span class="spine-num">03</span>
           <div><h3>Смета и договор</h3><p>Фиксируем итоговую стоимость и сроки, подписываем договор с гарантийными обязательствами.</p></div>
         </li>
-        <li class="spine-item">
+        <li class="spine-item" data-reveal>
           <span class="spine-num">04</span>
           <div><h3>Монтаж</h3><p>Собственная бригада выполняет работы по графику, прораб ведёт фотоотчёт на каждом этапе.</p></div>
         </li>
-        <li class="spine-item">
+        <li class="spine-item" data-reveal>
           <span class="spine-num">05</span>
           <div><h3>Сдача и гарантия</h3><p>Подписываем акт приёмки, выдаём гарантийный талон и остаёмся на связи весь гарантийный срок.</p></div>
         </li>
@@ -316,47 +369,50 @@
       <div class="section-head" data-reveal>
         <p class="eyebrow">Портфолио</p>
         <h2>Реализованные объекты</h2>
-        <p class="section-lead">Ниже — макет карточек проектов. Перед запуском сайта карточки будут заменены на реальные фотографии объектов.</p>
+        <p class="section-lead">Ниже — иллюстрации материалов вместо фотографий: у нас пока нет доступа к реальным снимкам объектов. Перед запуском сайта они будут заменены на настоящие фото выполненных работ.</p>
       </div>
 
-      <div class="masonry" data-reveal>
-        <figure class="project-card">
-          <div class="project-photo" aria-hidden="true">[ФОТО ОБЪЕКТА]</div>
+      <div class="masonry">
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-seam" aria-hidden="true"><svg class="project-iso"><use href="#iso-seam"/></svg></div>
           <figcaption>
             <h3>Фальцевая кровля, [420] м²</h3>
             <p>[Название посёлка / город]</p>
           </figcaption>
         </figure>
-        <figure class="project-card">
-          <div class="project-photo" aria-hidden="true">[ФОТО ОБЪЕКТА]</div>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-tile" aria-hidden="true"><svg class="project-iso"><use href="#iso-tile"/></svg></div>
           <figcaption>
             <h3>Металлочерепица, [280] м²</h3>
             <p>[Название посёлка / город]</p>
           </figcaption>
         </figure>
-        <figure class="project-card">
-          <div class="project-photo" aria-hidden="true">[ФОТО ОБЪЕКТА]</div>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-shingle" aria-hidden="true"><svg class="project-iso"><use href="#iso-shingle"/></svg></div>
           <figcaption>
             <h3>Мягкая кровля, [190] м²</h3>
             <p>[Название посёлка / город]</p>
           </figcaption>
         </figure>
-        <figure class="project-card">
-          <div class="project-photo" aria-hidden="true">[ФОТО ОБЪЕКТА]</div>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-tile" aria-hidden="true">
+            <svg class="project-iso"><use href="#iso-tile"/></svg>
+            <span class="project-patch"><svg><use href="#i-check"/></svg></span>
+          </div>
           <figcaption>
             <h3>Ремонт кровли, [150] м²</h3>
             <p>[Название посёлка / город]</p>
           </figcaption>
         </figure>
-        <figure class="project-card">
-          <div class="project-photo" aria-hidden="true">[ФОТО ОБЪЕКТА]</div>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-seam" aria-hidden="true"><svg class="project-iso"><use href="#iso-seam"/></svg></div>
           <figcaption>
             <h3>Фальцевая кровля, [610] м²</h3>
             <p>[Название посёлка / город]</p>
           </figcaption>
         </figure>
-        <figure class="project-card">
-          <div class="project-photo" aria-hidden="true">[ФОТО ОБЪЕКТА]</div>
+        <figure class="project-card" data-reveal>
+          <div class="project-photo project-photo-tile" aria-hidden="true"><svg class="project-iso"><use href="#iso-tile"/></svg></div>
           <figcaption>
             <h3>Металлочерепица, [340] м²</h3>
             <p>[Название посёлка / город]</p>
@@ -586,5 +642,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script type="module" src="assets/js/hero-3d.js"></script>
 </body>
 </html>
