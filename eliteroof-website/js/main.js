@@ -69,6 +69,103 @@
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
+  const reduceMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Hero parallax: the 3D/blueprint layer drifts and fades slightly slower
+  // than the page as the hero scrolls out, so it reads as sitting behind
+  // the copy rather than pinned flat to it.
+  const heroSection = document.querySelector('.hero');
+  const heroBlueprint = document.querySelector('.hero-blueprint');
+  if (heroSection && heroBlueprint && !reduceMotionMql.matches) {
+    let parallaxTicking = false;
+    const updateParallax = () => {
+      const rect = heroSection.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
+      heroBlueprint.style.transform = `translateY(${(progress * 48).toFixed(1)}px) scale(${(1 - progress * 0.08).toFixed(3)})`;
+      heroBlueprint.style.opacity = (1 - progress * 0.6).toFixed(2);
+      parallaxTicking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!parallaxTicking) {
+        requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+      }
+    }, { passive: true });
+    updateParallax();
+  }
+
+  // Process spine: fills the vertical line as the section scrolls through
+  // the reading line (~62% of viewport height), lighting up each step's
+  // number once the fill passes it.
+  const spine = document.querySelector('.spine');
+  if (spine) {
+    const spineItems = Array.from(spine.querySelectorAll('.spine-item'));
+    let spineTicking = false;
+    const updateSpine = () => {
+      const rect = spine.getBoundingClientRect();
+      const readingLine = window.innerHeight * 0.62;
+      const trackHeight = Math.max(0, spine.clientHeight - 16);
+      const raw = readingLine - rect.top - 8;
+      const fillPx = Math.min(trackHeight, Math.max(0, raw));
+      spine.style.setProperty('--spine-fill', `${fillPx.toFixed(1)}px`);
+      spineItems.forEach((item) => {
+        const passed = item.offsetTop + item.offsetHeight * 0.4 <= fillPx;
+        item.classList.toggle('is-passed', passed);
+      });
+      spineTicking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!spineTicking) {
+        requestAnimationFrame(updateSpine);
+        spineTicking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateSpine);
+    updateSpine();
+  }
+
+  // Bento tiles: cursor-tracked spotlight glow (CSS reads --mx/--my).
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.bento-tile').forEach((tile) => {
+      tile.addEventListener('pointermove', (event) => {
+        const rect = tile.getBoundingClientRect();
+        tile.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+        tile.style.setProperty('--my', `${event.clientY - rect.top}px`);
+      });
+    });
+
+    // Portfolio cards: a subtle pointer-tracked 3D tilt, reset on leave.
+    const TILT_MAX_DEG = 6;
+    document.querySelectorAll('.project-card').forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        const rx = (-py * TILT_MAX_DEG).toFixed(2);
+        const ry = (px * TILT_MAX_DEG).toFixed(2);
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.015)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // Hero quick-calc: hands its selection off to the real contact form
+  // instead of pretending to submit on its own.
+  const quickCalc = document.getElementById('quick-calc');
+  const contactMessage = document.getElementById('f-message');
+  if (quickCalc && contactMessage) {
+    quickCalc.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const type = quickCalc.querySelector('#qc-type').value;
+      const area = quickCalc.querySelector('#qc-area').value.trim();
+      contactMessage.value = area ? `Тип кровли: ${type}, площадь: ${area} м²` : `Тип кровли: ${type}`;
+      document.getElementById('contact').scrollIntoView({ behavior: reduceMotionMql.matches ? 'auto' : 'smooth' });
+      document.getElementById('f-name').focus();
+    });
+  }
+
   // Contact form: client-side validation + placeholder submit handling.
   // NOTE: no backend is wired up yet — replace the submit handler below with
   // a real endpoint (fetch/POST, CRM webhook, etc.) before launch.

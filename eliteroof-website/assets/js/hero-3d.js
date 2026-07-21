@@ -72,18 +72,18 @@
     }
 
     // ---------------------------------------------------------------
-    // Palette — pulled straight from css/tokens.css. Gold accent family:
-    // #dcae54 bright (dark surfaces), #7d5d1e deep (light surfaces). Reused
+    // Palette — pulled straight from css/tokens.css. Blue accent family:
+    // #6fa4ff bright (dark surfaces), #2456c9 deep (light surfaces). Reused
     // here for both the metal-roof trim AND the terrace railing, so the
-    // railing reads as the same brand gold rather than an invented "wood"
-    // color, and the dark-mode --border (#34413a) becomes the paved
+    // railing reads as the same brand blue rather than an invented "wood"
+    // color, and the dark-mode --border (#333e4a) becomes the paved
     // courtyard tone, and --surface-dark (#12181a) becomes the tree color —
     // every material in the scene traces back to a real token.
     // ---------------------------------------------------------------
-    const GOLD_BRIGHT = 0xdcae54; // --accent-on-dark
-    const GOLD_DEEP = 0x7d5d1e;   // --accent
+    const ACCENT_BRIGHT = 0x6fa4ff; // --accent-on-dark
+    const ACCENT_DEEP = 0x2456c9;   // --accent
     const SURFACE_DARK = 0x12181a; // --surface-dark
-    const BORDER_DARK = 0x34413a;  // dark-mode --border
+    const BORDER_DARK = 0x333e4a;  // dark-mode --border
 
     // ---------------------------------------------------------------
     // Procedural geometry: a modern house with a main two-story volume, a
@@ -112,11 +112,11 @@
       emissive: 0x141c18, emissiveIntensity: 0.4,
       clearcoat: 0.5, clearcoatRoughness: 0.15,
     });
-    const accentMat = new THREE.MeshStandardMaterial({ color: GOLD_BRIGHT, roughness: 0.32, metalness: 0.5 });
-    // Terrace railing — literally the deep-gold brand token rendered as a
+    const accentMat = new THREE.MeshStandardMaterial({ color: ACCENT_BRIGHT, roughness: 0.32, metalness: 0.5 });
+    // Terrace railing — literally the deep-blue brand token rendered as a
     // matte metal slat, doubling as both "wood-slat railing" silhouette and
-    // an on-brand gold accent instead of an invented wood color.
-    const slatMat = new THREE.MeshStandardMaterial({ color: GOLD_DEEP, roughness: 0.55, metalness: 0.15 });
+    // an on-brand blue accent instead of an invented wood color.
+    const slatMat = new THREE.MeshStandardMaterial({ color: ACCENT_DEEP, roughness: 0.55, metalness: 0.15 });
     const treeMat = new THREE.MeshStandardMaterial({ color: SURFACE_DARK, roughness: 0.85, metalness: 0.02 });
     const trunkMat = new THREE.MeshStandardMaterial({ color: 0x0b0e0a, roughness: 0.9, metalness: 0 });
 
@@ -257,7 +257,7 @@
     // roofs carry identical roofing-system detailing.
     // ---------------------------------------------------------------
     const seamMat = new THREE.MeshStandardMaterial({
-      color: GOLD_BRIGHT, roughness: 0.35, metalness: 0.6, transparent: true, opacity: 0.55,
+      color: ACCENT_BRIGHT, roughness: 0.35, metalness: 0.6, transparent: true, opacity: 0.55,
     });
     function buildRoof({ halfW, apex, depth, x, y, seamCount, seamInset, ridgeThickness }) {
       const shape = new THREE.Shape();
@@ -275,7 +275,7 @@
 
       const edges = new THREE.LineSegments(
         new THREE.EdgesGeometry(geo, 20),
-        new THREE.LineBasicMaterial({ color: GOLD_BRIGHT, transparent: true, opacity: 0.55 })
+        new THREE.LineBasicMaterial({ color: ACCENT_BRIGHT, transparent: true, opacity: 0.55 })
       );
       edges.position.set(x, y, 0);
       house.add(edges);
@@ -335,18 +335,18 @@
     chimneyCap.castShadow = true;
     house.add(chimneyCap);
 
-    // Faint bronze trace around the wall footprint — a quiet "dimension
+    // Faint blue trace around the wall footprint — a quiet "dimension
     // line" echo of the flat illustration's hi-dim/hi-tick marks.
     const baseEdges = new THREE.LineSegments(
       new THREE.EdgesGeometry(new THREE.BoxGeometry(wallW, wallH, wallD)),
-      new THREE.LineBasicMaterial({ color: GOLD_BRIGHT, transparent: true, opacity: 0.14 })
+      new THREE.LineBasicMaterial({ color: ACCENT_BRIGHT, transparent: true, opacity: 0.14 })
     );
     baseEdges.position.y = wallH / 2;
     house.add(baseEdges);
 
     // ---------------------------------------------------------------
     // Covered terrace — a cantilevered floor slab (no support columns, on
-    // purpose, to read as cantilevered) with a gold slat railing and a
+    // purpose, to read as cantilevered) with a blue slat railing and a
     // separate flat cantilever canopy above it that clears the main roof's
     // eave so the two never intersect. A few railing-integrated glow points
     // echo the reference's landscape lighting detail.
@@ -512,7 +512,7 @@
     const cameraElevation = 0.26; // radians
 
     // ---------------------------------------------------------------
-    // Soft studio lighting: key + hemisphere fill + gold rim + ambient.
+    // Soft studio lighting: key + hemisphere fill + blue rim + ambient.
     // The key light casts real shadows now — a tight, boundRadius-sized
     // orthographic frustum keeps the 1024px shadow map resolution useful
     // instead of spreading it over empty space.
@@ -537,7 +537,7 @@
     const fill = new THREE.HemisphereLight(0x8a97ad, 0x1c1611, 0.55);
     scene.add(fill);
 
-    const rim = new THREE.DirectionalLight(GOLD_BRIGHT, 1.1);
+    const rim = new THREE.DirectionalLight(ACCENT_BRIGHT, 1.1);
     rim.position.set(-3.4, 2.2, -4.2);
     scene.add(rim);
 

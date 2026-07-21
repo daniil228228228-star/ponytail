@@ -1,34 +1,31 @@
-/* Design tokens — grounded in the material world of a working roof, not a
-   generic "editorial premium" template: cool zinc/slate paper instead of
-   warm cream, an expanded industrial grotesk instead of a serif+Inter
-   pairing, and a deep architectural gold as the one true accent (night
-   aerial shots of premium roofs, gold signage on a black storefront —
-   luxury-construction, not SaaS-mood-board). Gold is intentionally two
-   different values depending on ground: a deep bronze-gold on the light
-   paper background (bright gold fails AA as text there) and a brighter,
-   more vivid gold on dark surfaces (hero, why-us, footer) where it can
-   read at full saturation. Mono face is used *only* where digits are
-   actually tabular data (spec numbers, prices, stats) — it's a
+/* Design tokens — white/black marketplace system (HouseMarket-style
+   reference) with a single blue accent standing in for the old
+   architectural gold. Nav/headline chrome reads black-on-white; blue is
+   the one signal color, applied the same two-value way gold used to be:
+   a deep cobalt on light paper (bright blue fails AA as text there) and a
+   lighter sky-blue on dark surfaces (footer, night-render frames) where
+   it can read at full saturation. Mono face is used *only* where digits
+   are actually tabular data (spec numbers, prices, stats) — it's a
    spec-sheet reference, not decoration. */
 
 :root {
-  --bg: #eef1ee;
+  --bg: #f4f5f7;
   --surface: #ffffff;
-  --surface-warm: #e3e8e3;
+  --surface-warm: #e8ecf3;
   --surface-dark: #12181a;
-  --fg: #131715;
-  --fg-2: #454e49;
-  --muted: #5c6963;
-  --muted-on-dark: #a7b7ae;
+  --fg: #12151a;
+  --fg-2: #454b54;
+  --muted: #5c636b;
+  --muted-on-dark: #a7b3bd;
   --fg-on-dark: #ffffff;
-  --border: #ccd6cd;
-  --border-soft: #e1e8e2;
-  --accent: #7d5d1e;
+  --border: #d7dbe2;
+  --border-soft: #e6e9ee;
+  --accent: #2456c9;
   --accent-on: #ffffff;
-  --accent-hover: #6a4f19;
-  --accent-active: #583f14;
-  --accent-on-dark: #dcae54;
-  --accent-on-dark-ink: #1a1408;
+  --accent-hover: #1c46a8;
+  --accent-active: #163987;
+  --accent-on-dark: #6fa4ff;
+  --accent-on-dark-ink: #081c3a;
   --success: #2f8f52;
   --warn: #c4872c;
   --danger: #b23b3b;
@@ -71,7 +68,7 @@
   --elev-flat: none;
   --elev-ring: 0 0 0 1px var(--border);
   --elev-raised: 0 24px 64px rgba(28, 27, 25, 0.12);
-  --focus-ring: 0 0 0 4px rgba(125, 93, 30, 0.32);
+  --focus-ring: 0 0 0 4px rgba(36, 86, 201, 0.32);
 
   --motion-fast: 170ms;
   --motion-base: 280ms;
@@ -85,19 +82,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #12160f;
-    --surface: #1a201b;
-    --surface-warm: #212a22;
-    --fg: #eef1ec;
-    --fg-2: #cbd6cf;
-    --muted: #93a196;
-    --border: #34413a;
-    --border-soft: #232c26;
-    --accent: #dcae54;
-    --accent-on: #1a1408;
-    --accent-hover: #e6bd6d;
-    --accent-active: #efc985;
+    --bg: #10141a;
+    --surface: #181e26;
+    --surface-warm: #1f2731;
+    --fg: #eef1f4;
+    --fg-2: #cbd3db;
+    --muted: #93a0ac;
+    --border: #333e4a;
+    --border-soft: #232b34;
+    --accent: #6fa4ff;
+    --accent-on: #081c3a;
+    --accent-hover: #8bb6ff;
+    --accent-active: #a7c7ff;
     --elev-raised: 0 24px 64px rgba(0, 0, 0, 0.45);
-    --focus-ring: 0 0 0 4px rgba(220, 174, 84, 0.32);
+    --focus-ring: 0 0 0 4px rgba(111, 164, 255, 0.32);
   }
 }

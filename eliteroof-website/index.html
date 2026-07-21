@@ -196,29 +196,66 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-blueprint" aria-hidden="true">
-      <canvas class="hero-canvas" id="hero-canvas"></canvas>
-      <svg class="hero-illustration" viewBox="0 0 480 460" preserveAspectRatio="xMidYMid meet">
-        <path class="hi-roof" d="M50 290 L240 80 L430 290" />
-        <path class="hi-wall" d="M96 290 L96 370 L384 370 L384 290" />
-        <path class="hi-ridge" d="M240 80 L240 40" />
-        <circle class="hi-dot" cx="240" cy="40" r="5" />
-        <path class="hi-dim" d="M150 220 L150 290" />
-        <path class="hi-dim" d="M330 220 L330 290" />
-        <path class="hi-tick" d="M142 220 L158 220 M142 290 L158 290" />
-        <path class="hi-tick" d="M322 220 L338 220 M322 290 L338 290" />
-        <path class="hi-seam" d="M96 290 L240 170 L384 290" />
-      </svg>
-    </div>
-    <div class="container hero-inner" data-reveal>
-      <p class="eyebrow eyebrow-light">Кровельная компания полного цикла</p>
-      <h1>Кровля,<br>которая простоит<br><span class="accent-marked">десятилетия</span></h1>
-      <p class="hero-lead">Проектируем, монтируем и обслуживаем кровли премиум-класса — от металлочерепицы до фальца. Работаем по договору с фиксированной сметой и гарантией до 15 лет.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку на замер</a>
-        <a class="btn btn-ghost btn-ghost-light btn-lg" href="#portfolio">Смотреть проекты</a>
+    <div class="container">
+      <div class="hero-grid" data-reveal>
+        <div class="hero-copy">
+          <p class="eyebrow">Кровельная компания полного цикла</p>
+          <h1>Кровля,<br>которая простоит<br><span class="accent-marked">десятилетия</span></h1>
+          <p class="hero-lead">Проектируем, монтируем и обслуживаем кровли премиум-класса — от металлочерепицы до фальца. Работаем по договору с фиксированной сметой и гарантией до 15 лет.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="#contact">Оставить заявку на замер</a>
+            <a class="btn btn-ghost btn-lg" href="#portfolio">Смотреть проекты</a>
+          </div>
+          <div class="hero-proof">
+            <div class="hero-proof-badges" aria-hidden="true">
+              <span class="hero-proof-badge"><svg><use href="#i-hardhat"/></svg></span>
+              <span class="hero-proof-badge"><svg><use href="#i-crew"/></svg></span>
+              <span class="hero-proof-badge"><svg><use href="#i-shield"/></svg></span>
+            </div>
+            <div class="hero-proof-text">
+              <div class="hero-proof-stars" aria-hidden="true">
+                <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
+              </div>
+              <p>[4.9] из 5 — по отзывам [300+] клиентов</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <div class="hero-blueprint" aria-hidden="true">
+            <canvas class="hero-canvas" id="hero-canvas"></canvas>
+            <svg class="hero-illustration" viewBox="0 0 480 460" preserveAspectRatio="xMidYMid meet">
+              <path class="hi-roof" d="M50 290 L240 80 L430 290" />
+              <path class="hi-wall" d="M96 290 L96 370 L384 370 L384 290" />
+              <path class="hi-ridge" d="M240 80 L240 40" />
+              <circle class="hi-dot" cx="240" cy="40" r="5" />
+              <path class="hi-dim" d="M150 220 L150 290" />
+              <path class="hi-dim" d="M330 220 L330 290" />
+              <path class="hi-tick" d="M142 220 L158 220 M142 290 L158 290" />
+              <path class="hi-tick" d="M322 220 L338 220 M322 290 L338 290" />
+              <path class="hi-seam" d="M96 290 L240 170 L384 290" />
+            </svg>
+          </div>
+          <form class="hero-quickcalc" id="quick-calc" aria-label="Быстрый расчёт стоимости кровли">
+            <div class="qc-field">
+              <label for="qc-type">Тип кровли</label>
+              <select id="qc-type" name="type">
+                <option>Металлочерепица</option>
+                <option>Мягкая кровля</option>
+                <option>Фальцевая кровля</option>
+                <option>Ремонт и реставрация</option>
+              </select>
+            </div>
+            <div class="qc-field">
+              <label for="qc-area">Площадь, м²</label>
+              <input type="number" id="qc-area" name="area" min="1" placeholder="150">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Рассчитать</button>
+          </form>
+        </div>
       </div>
     </div>
+
     <div class="hero-ledger">
       <div class="container">
         <dl class="hero-stats">
@@ -229,7 +266,6 @@
         </dl>
       </div>
     </div>
-    <div class="pitch-divider pitch-divider-light" aria-hidden="true"></div>
   </section>
 
   <!-- SERVICES -->
@@ -456,20 +492,20 @@
         <p class="section-lead">Итоговая цена рассчитывается после бесплатного замера и зависит от сложности кровли, материала и региона.</p>
       </div>
 
-      <div class="price-table" data-reveal>
+      <div class="price-table">
         <div class="price-row price-row-head">
           <span></span><span class="price-name">Тип кровли</span><span class="price-value">Стоимость работ</span><span></span>
         </div>
-        <div class="price-row">
+        <div class="price-row" data-reveal>
           <svg class="price-icon" aria-hidden="true"><use href="#i-roof"/></svg><span class="price-name">Металлочерепица</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
-        <div class="price-row">
+        <div class="price-row" data-reveal>
           <svg class="price-icon" aria-hidden="true"><use href="#i-drop"/></svg><span class="price-name">Мягкая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
-        <div class="price-row">
+        <div class="price-row" data-reveal>
           <svg class="price-icon" aria-hidden="true"><use href="#i-ruler"/></svg><span class="price-name">Фальцевая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
-        <div class="price-row">
+        <div class="price-row" data-reveal>
           <svg class="price-icon" aria-hidden="true"><use href="#i-hardhat"/></svg><span class="price-name">Ремонт и реставрация</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
       </div>
