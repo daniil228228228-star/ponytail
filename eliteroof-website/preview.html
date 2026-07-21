@@ -253,7 +253,18 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
   color: var(--accent-hover); margin: 0 0 var(--space-4);
 }
 .eyebrow-light { color: var(--accent-on-dark); }
-.accent-italic { font-style: italic; color: var(--accent-on-dark); }
+/* A dashed underline instead of an italic color-swap for the hero's one
+   emphasized word — echoes the dimension-tick dashed lines already used
+   in the flat blueprint SVG (.hi-dim/.hi-tick) rather than the generic
+   "italicize one word in a different color" landing-page trick. */
+.accent-marked {
+  color: var(--accent-on-dark);
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: color-mix(in oklab, var(--accent-on-dark), transparent 35%);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.14em;
+}
 
 /* ---------- Roof-pitch section divider ---------- */
 .pitch-divider {
@@ -339,20 +350,18 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 /* ---------- Services: spec-sheet ledger ---------- */
 .spec-list { border-top: 1px solid var(--border); }
 .spec-row {
-  display: grid; grid-template-columns: 56px 32px 1fr 2fr auto; align-items: center; gap: var(--space-5);
+  display: grid; grid-template-columns: 32px 1fr 2fr auto; align-items: center; gap: var(--space-5);
   padding-block: var(--space-6); border-bottom: 1px solid var(--border-soft);
   transition: background-color var(--motion-base) var(--ease-standard);
 }
 .spec-row:hover { background: var(--surface-warm); }
-.spec-num { font-family: var(--font-mono); font-size: var(--text-lg); color: var(--muted); font-variant-numeric: tabular-nums; }
 .spec-icon { width: 24px; height: 24px; color: var(--accent); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .spec-row h3 { margin: 0; }
 .spec-row p { margin: 0; font-size: var(--text-sm); }
 .spec-link { justify-self: end; white-space: nowrap; font-size: var(--text-sm); font-weight: 600; color: var(--accent); text-decoration: none; }
 .spec-link:hover { text-decoration: underline; }
 @media (max-width: 900px) {
-  .spec-row { grid-template-columns: 32px 1fr; grid-template-areas: "num title" "icon body" ". link"; row-gap: var(--space-3); }
-  .spec-num { grid-area: num; }
+  .spec-row { grid-template-columns: 32px 1fr; grid-template-areas: "icon title" ". body" ". link"; row-gap: var(--space-3); }
   .spec-icon { grid-area: icon; }
   .spec-row h3 { grid-area: title; }
   .spec-row p { grid-area: body; }
@@ -485,8 +494,8 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 
 /* ---------- Pricing ---------- */
 .price-table { border-top: 2px solid var(--fg); }
-.price-row { display: grid; grid-template-columns: 40px 1fr 1fr auto; align-items: center; gap: var(--space-4); padding: var(--space-5) 0; border-bottom: 1px solid var(--border-soft); }
-.price-row .spec-num { font-size: var(--text-base); }
+.price-row { display: grid; grid-template-columns: 24px 1fr 1fr auto; align-items: center; gap: var(--space-4); padding: var(--space-5) 0; border-bottom: 1px solid var(--border-soft); }
+.price-icon { width: 20px; height: 20px; color: var(--accent); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .price-row .price-value { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--fg-2); }
 .price-row-head { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-2); font-weight: 600; }
 .price-row-head .price-value { font-family: var(--font-body); }
@@ -494,11 +503,11 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
   .price-row {
     display: grid;
     grid-template-columns: 24px 1fr;
-    grid-template-areas: "num name" "num value" ". link";
+    grid-template-areas: "icon name" "icon value" ". link";
     row-gap: var(--space-1); column-gap: var(--space-3);
     text-align: left;
   }
-  .price-row .spec-num { grid-area: num; }
+  .price-row .price-icon { grid-area: icon; }
   .price-row .price-name { grid-area: name; font-weight: 600; }
   .price-row .price-value { grid-area: value; color: var(--muted); font-size: var(--text-sm); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .price-row > a { grid-area: link; justify-self: start; margin-top: var(--space-2); }
@@ -714,7 +723,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
     </nav>
 
     <div class="header-actions">
-      <a class="header-phone" href="tel:[ТЕЛЕФОН]">
+      <a class="header-phone" href="#contact">
         <svg aria-hidden="true"><use href="#i-phone"/></svg>
         <span>[ТЕЛЕФОН]</span>
       </a>
@@ -747,7 +756,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
     </div>
     <div class="container hero-inner" data-reveal>
       <p class="eyebrow eyebrow-light">Кровельная компания полного цикла</p>
-      <h1>Кровля,<br>которая простоит<br><span class="accent-italic">десятилетия</span></h1>
+      <h1>Кровля,<br>которая простоит<br><span class="accent-marked">десятилетия</span></h1>
       <p class="hero-lead">Проектируем, монтируем и обслуживаем кровли премиум-класса — от металлочерепицы до фальца. Работаем по договору с фиксированной сметой и гарантией до 15 лет.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку на замер</a>
@@ -759,8 +768,8 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
         <dl class="hero-stats">
           <div><dt>[12+]</dt><dd>лет на рынке</dd></div>
           <div><dt>[300+]</dt><dd>сданных объектов</dd></div>
-          <div><dt>15 лет</dt><dd>максимальная гарантия</dd></div>
-          <div><dt>100%</dt><dd>фиксация сметы в договоре</dd></div>
+          <div><dt>[15] лет</dt><dd>максимальная гарантия</dd></div>
+          <div><dt>[100]%</dt><dd>фиксация сметы в договоре</dd></div>
         </dl>
       </div>
     </div>
@@ -780,42 +789,36 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 
       <div class="spec-list">
         <article class="spec-row" data-reveal>
-          <span class="spec-num">01</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-roof"/></svg>
           <h3>Металлочерепица</h3>
           <p>Монтаж кровли из металлочерепицы ведущих производителей с полным циклом: обрешётка, утепление, доборные элементы.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
         <article class="spec-row" data-reveal>
-          <span class="spec-num">02</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-drop"/></svg>
           <h3>Мягкая кровля</h3>
           <p>Битумная и полимерная черепица для сложных архитектурных форм — куполов, эркеров, ломаных скатов.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
         <article class="spec-row" data-reveal>
-          <span class="spec-num">03</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-ruler"/></svg>
           <h3>Фальцевая кровля</h3>
           <p>Премиальный фальц из меди, цинк-титана и стали с двойным стоячим замком — для домов, где кровля видна издалека.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
         <article class="spec-row" data-reveal>
-          <span class="spec-num">04</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-hardhat"/></svg>
           <h3>Ремонт и реставрация</h3>
           <p>Устранение протечек, замена повреждённых участков, диагностика кровельного пирога перед сезоном.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
         <article class="spec-row" data-reveal>
-          <span class="spec-num">05</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-shield"/></svg>
           <h3>Гидро- и теплоизоляция</h3>
           <p>Влаго-, паро- и теплоизоляционные системы «под ключ» — от подбора материалов до финального контроля швов.</p>
           <a class="spec-link" href="#contact">Обсудить →</a>
         </article>
         <article class="spec-row" data-reveal>
-          <span class="spec-num">06</span>
           <svg class="spec-icon" aria-hidden="true"><use href="#i-snow"/></svg>
           <h3>Водостоки и снегозадержатели</h3>
           <p>Организованный водоотвод и системы снегозадержания, рассчитанные под ваш регион и уклон кровли.</p>
@@ -899,7 +902,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
       <div class="section-head" data-reveal>
         <p class="eyebrow">Портфолио</p>
         <h2>Реализованные объекты</h2>
-        <p class="section-lead">Ниже — иллюстрации материалов вместо фотографий: у нас пока нет доступа к реальным снимкам объектов. Перед запуском сайта они будут заменены на настоящие фото выполненных работ.</p>
+        <p class="section-lead">Каждый объект отмечен схемой покрытия — тип материала и укладки. Фотографии объектов добавляются по мере съёмки готовых работ.</p>
       </div>
 
       <div class="masonry">
@@ -956,9 +959,8 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
   <section class="section" id="reviews">
     <div class="container">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Отзывы</p>
         <h2>Что говорят клиенты</h2>
-        <p class="section-lead">Ниже — пример оформления блока отзывов. Реальные отзывы клиентов будут добавлены после запуска сайта.</p>
+        <p class="section-lead">Отзывы клиентов публикуются по завершении объекта — с их согласия.</p>
       </div>
 
       <div class="reviews-layout" data-reveal>
@@ -994,7 +996,6 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
   <section class="section section-alt" id="pricing">
     <div class="container">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Цены</p>
         <h2>Ориентировочная стоимость работ</h2>
         <p class="section-lead">Итоговая цена рассчитывается после бесплатного замера и зависит от сложности кровли, материала и региона.</p>
       </div>
@@ -1004,16 +1005,16 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
           <span></span><span class="price-name">Тип кровли</span><span class="price-value">Стоимость работ</span><span></span>
         </div>
         <div class="price-row">
-          <span class="spec-num">01</span><span class="price-name">Металлочерепица</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <svg class="price-icon" aria-hidden="true"><use href="#i-roof"/></svg><span class="price-name">Металлочерепица</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
         <div class="price-row">
-          <span class="spec-num">02</span><span class="price-name">Мягкая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <svg class="price-icon" aria-hidden="true"><use href="#i-drop"/></svg><span class="price-name">Мягкая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
         <div class="price-row">
-          <span class="spec-num">03</span><span class="price-name">Фальцевая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <svg class="price-icon" aria-hidden="true"><use href="#i-ruler"/></svg><span class="price-name">Фальцевая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
         <div class="price-row">
-          <span class="spec-num">04</span><span class="price-name">Ремонт и реставрация</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <svg class="price-icon" aria-hidden="true"><use href="#i-hardhat"/></svg><span class="price-name">Ремонт и реставрация</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
       </div>
     </div>
@@ -1023,7 +1024,6 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
   <section class="section" id="faq">
     <div class="container">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Вопросы и ответы</p>
         <h2>Частые вопросы о кровельных работах</h2>
       </div>
 
@@ -1067,7 +1067,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
         <p>Оставьте заявку прямо сейчас — свяжемся с вами в ближайшее рабочее время и подберём удобную дату для замера.</p>
         <div class="cta-band-buttons">
           <a class="btn btn-primary btn-primary-dark btn-lg" href="#contact">Оставить заявку</a>
-          <a class="header-phone header-phone-light" href="tel:[ТЕЛЕФОН]">
+          <a class="header-phone header-phone-light" href="#contact">
             <svg aria-hidden="true"><use href="#i-phone"/></svg>
             <span>[ТЕЛЕФОН]</span>
           </a>
@@ -1110,11 +1110,11 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
         <ul class="contact-info">
           <li>
             <svg aria-hidden="true"><use href="#i-phone"/></svg>
-            <div><strong>Телефон</strong><a href="tel:[ТЕЛЕФОН]">[ТЕЛЕФОН]</a></div>
+            <div><strong>Телефон</strong><a href="#contact">[ТЕЛЕФОН]</a></div>
           </li>
           <li>
             <svg aria-hidden="true"><use href="#i-mail"/></svg>
-            <div><strong>Email</strong><a href="mailto:[EMAIL]">[EMAIL]</a></div>
+            <div><strong>Email</strong><a href="#contact">[EMAIL]</a></div>
           </li>
           <li>
             <svg aria-hidden="true"><use href="#i-pin"/></svg>
@@ -1161,8 +1161,8 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
     </nav>
     <div class="footer-contact">
       <h2>Связаться</h2>
-      <a href="tel:[ТЕЛЕФОН]">[ТЕЛЕФОН]</a>
-      <a href="mailto:[EMAIL]">[EMAIL]</a>
+      <a href="#contact">[ТЕЛЕФОН]</a>
+      <a href="#contact">[EMAIL]</a>
     </div>
   </div>
   <div class="container footer-legal">
