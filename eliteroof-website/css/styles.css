@@ -81,7 +81,7 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-5);
   padding-block: var(--space-4);
 }
 .logo { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; }
@@ -90,7 +90,7 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 .logo-text { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: 0.02em; color: var(--fg); display: flex; flex-direction: column; line-height: 1.1; }
 .logo-sub { font-family: var(--font-body); font-weight: 400; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
 
-.main-nav ul { list-style: none; display: flex; gap: var(--space-6); margin: 0; padding: 0; }
+.main-nav ul { list-style: none; display: flex; gap: var(--space-5); margin: 0; padding: 0; white-space: nowrap; }
 .main-nav a { text-decoration: none; font-size: var(--text-sm); font-weight: 500; color: var(--fg-2); transition: color var(--motion-fast); }
 .main-nav a:hover { color: var(--accent-hover); }
 
@@ -194,7 +194,12 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 .hero-stats dd { margin: 0; font-size: var(--text-xs); color: var(--muted-on-dark); }
 
 @media (max-width: 900px) {
-  .hero-blueprint { width: 90%; right: -20%; opacity: 0.7; }
+  /* Keep the decorative layer contained above the headline instead of
+     stretching the full section height — at narrow widths that stretch
+     used to run straight through the CTA buttons and stats row below,
+     making the (transparent-background) ghost button hard to read against
+     the model behind it. */
+  .hero-blueprint { width: 78%; right: -18%; bottom: auto; aspect-ratio: 1 / 1; opacity: 0.7; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -307,6 +312,13 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
 .project-photo-seam .project-iso { color: var(--accent); }
 .project-photo-tile .project-iso { color: var(--fg-2); }
 .project-photo-shingle .project-iso { color: var(--accent-hover); }
+/* Two service types repeat across the placeholder portfolio (until real
+   project photos exist) — mirror repeat instances of the same icon so
+   they don't read as one identical graphic pasted three times. */
+.masonry .project-card:nth-child(4) .project-iso,
+.masonry .project-card:nth-child(6) .project-iso { transform: scaleX(-1); }
+.masonry .project-card:nth-child(4):hover .project-iso,
+.masonry .project-card:nth-child(6):hover .project-iso { transform: scaleX(-1) translateY(-3px) scale(1.03); }
 .project-patch {
   position: absolute; top: var(--space-4); right: var(--space-4);
   width: 32px; height: 32px; border-radius: 50%; background: var(--success);
@@ -343,10 +355,19 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 .price-table { border-top: 2px solid var(--fg); }
 .price-row { display: grid; grid-template-columns: 40px 1fr 1fr auto; align-items: center; gap: var(--space-4); padding: var(--space-5) 0; border-bottom: 1px solid var(--border-soft); }
 .price-row .spec-num { font-size: var(--text-base); }
-.price-row-head { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+.price-row-head { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-2); font-weight: 600; }
 @media (max-width: 560px) {
-  .price-row { grid-template-columns: 24px 1fr; gap: var(--space-2); text-align: left; }
-  .price-row > a { grid-column: 1 / -1; justify-self: start; margin-top: var(--space-2); }
+  .price-row {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    grid-template-areas: "num name" "num value" ". link";
+    row-gap: var(--space-1); column-gap: var(--space-3);
+    text-align: left;
+  }
+  .price-row .spec-num { grid-area: num; }
+  .price-row .price-name { grid-area: name; font-weight: 600; }
+  .price-row .price-value { grid-area: value; color: var(--muted); font-size: var(--text-sm); }
+  .price-row > a { grid-area: link; justify-self: start; margin-top: var(--space-2); }
   .price-row-head { display: none; }
 }
 

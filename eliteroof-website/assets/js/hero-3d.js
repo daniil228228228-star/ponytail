@@ -63,8 +63,18 @@
     // ---------------------------------------------------------------
     const house = new THREE.Group();
 
-    const wallMat = new THREE.MeshStandardMaterial({ color: 0x2a2319, roughness: 0.78, metalness: 0.06 });
-    const roofMat = new THREE.MeshStandardMaterial({ color: 0x372718, roughness: 0.48, metalness: 0.22 });
+    // Both materials carry a constant `emissive` floor so no face ever reads
+    // as pure background-matching black on the unlit side of a rotation —
+    // without it the walls were nearly indistinguishable from --surface-dark
+    // for roughly a quarter of every turn.
+    const wallMat = new THREE.MeshStandardMaterial({
+      color: 0x3c3020, roughness: 0.78, metalness: 0.06,
+      emissive: 0x15100a, emissiveIntensity: 0.6,
+    });
+    const roofMat = new THREE.MeshStandardMaterial({
+      color: 0x4a3620, roughness: 0.48, metalness: 0.22,
+      emissive: 0x1c1208, emissiveIntensity: 0.45,
+    });
     const accentMat = new THREE.MeshStandardMaterial({ color: 0xd3a273, roughness: 0.32, metalness: 0.6 });
 
     const wallW = 2.2;
@@ -149,7 +159,7 @@
     rim.position.set(-3.4, 2.2, -4.2);
     scene.add(rim);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.12);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.2);
     scene.add(ambient);
 
     // ---------------------------------------------------------------

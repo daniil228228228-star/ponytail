@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#a06a3b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%231c1b19'/%3E%3Cpath d='M4 12 12 5l8 7M6 11v7h12v-7' fill='none' stroke='%23d3a273' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <title>ELITEROOF — премиальные кровельные работы под ключ | [ГОРОД]</title>
 <meta name="description" content="ELITEROOF — монтаж и ремонт кровли любой сложности: металлочерепица, мягкая и фальцевая кровля, гидро- и теплоизоляция, водостоки. Гарантия до 15 лет, фиксированная смета, работаем в [ГОРОД] и области.">
 <link rel="canonical" href="https://eliteroof.info/">
@@ -39,6 +40,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 
 <!--
   JSON-LD structured data (schema.org RoofingContractor, a specific subtype of
@@ -168,7 +170,7 @@
       <ul>
         <li><a href="#services">Услуги</a></li>
         <li><a href="#why">Преимущества</a></li>
-        <li><a href="#process">Как мы работаем</a></li>
+        <li><a href="#process">Процесс</a></li>
         <li><a href="#portfolio">Портфолио</a></li>
         <li><a href="#reviews">Отзывы</a></li>
         <li><a href="#pricing">Цены</a></li>
@@ -210,7 +212,7 @@
     </div>
     <div class="container hero-inner" data-reveal>
       <p class="eyebrow eyebrow-light">Кровельная компания полного цикла</p>
-      <h1>Кровля,<br>которой не страшны<br><span class="accent-italic">десятилетия</span></h1>
+      <h1>Кровля,<br>которая простоит<br><span class="accent-italic">десятилетия</span></h1>
       <p class="hero-lead">Проектируем, монтируем и обслуживаем кровли премиум-класса — от металлочерепицы до фальца. Работаем по договору с фиксированной сметой и гарантией до 15 лет.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="#contact">Оставить заявку на замер</a>
@@ -471,19 +473,19 @@
 
       <div class="price-table" data-reveal>
         <div class="price-row price-row-head">
-          <span></span><span>Тип кровли</span><span>Стоимость работ</span><span></span>
+          <span></span><span class="price-name">Тип кровли</span><span class="price-value">Стоимость работ</span><span></span>
         </div>
         <div class="price-row">
-          <span class="spec-num">01</span><span>Металлочерепица</span><span>от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <span class="spec-num">01</span><span class="price-name">Металлочерепица</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
         <div class="price-row">
-          <span class="spec-num">02</span><span>Мягкая кровля</span><span>от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <span class="spec-num">02</span><span class="price-name">Мягкая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
         <div class="price-row">
-          <span class="spec-num">03</span><span>Фальцевая кровля</span><span>от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <span class="spec-num">03</span><span class="price-name">Фальцевая кровля</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
         <div class="price-row">
-          <span class="spec-num">04</span><span>Ремонт и реставрация</span><span>от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
+          <span class="spec-num">04</span><span class="price-name">Ремонт и реставрация</span><span class="price-value">от [ЦЕНА] ₽ / м²</span><a class="btn btn-ghost btn-sm" href="#contact">Рассчитать</a>
         </div>
       </div>
     </div>
@@ -500,27 +502,27 @@
       <div class="faq-list" data-reveal>
         <div class="faq-item">
           <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-1">Сколько времени занимает монтаж кровли?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-          <div class="faq-panel" id="faq-panel-1" aria-hidden="true"><p>Сроки зависят от площади и сложности кровли — точный график фиксируется в договоре после замера.</p></div>
+          <div class="faq-panel" id="faq-panel-1" aria-hidden="true"><p>Зависит от площади, конструкции стропильной системы и материала: простая скатная кровля занимает меньше времени, чем объект с ендовами, мансардными окнами или сложной геометрией. Точные сроки называем после замера и фиксируем в договоре.</p></div>
         </div>
         <div class="faq-item">
           <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-2">Работаете ли вы в зимний период?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-          <div class="faq-panel" id="faq-panel-2" aria-hidden="true"><p>Да, часть работ выполняется круглый год с учётом технологических ограничений по температуре для конкретных материалов.</p></div>
+          <div class="faq-panel" id="faq-panel-2" aria-hidden="true"><p>Монтаж металлочерепицы и фальца возможен почти круглый год. А вот битумную мягкую кровлю рекомендуем укладывать при температуре не ниже +5°C — иначе материал не даёт нужной адгезии. Подскажем подходящее окно уже на этапе замера.</p></div>
         </div>
         <div class="faq-item">
           <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-3">Даёте ли вы гарантию на кровлю?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-          <div class="faq-panel" id="faq-panel-3" aria-hidden="true"><p>Да, гарантия до 15 лет на монтажные работы и материалы — условия фиксируются в договоре и гарантийном талоне.</p></div>
+          <div class="faq-panel" id="faq-panel-3" aria-hidden="true"><p>Да — до 15 лет, и на монтаж, и на материалы. Срок зависит от типа кровли и указывается в договоре и гарантийном талоне, которые остаются у вас на руках.</p></div>
         </div>
         <div class="faq-item">
           <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-4">Что входит в бесплатный замер?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-          <div class="faq-panel" id="faq-panel-4" aria-hidden="true"><p>Выезд инженера, обмер кровли, консультация по материалам и предварительный расчёт стоимости.</p></div>
+          <div class="faq-panel" id="faq-panel-4" aria-hidden="true"><p>Инженер обмеряет скаты и периметр, фотографирует фасад и текущую кровлю, консультирует по материалам под ваш бюджет и архитектуру дома, и оставляет предварительный расчёт стоимости на руках.</p></div>
         </div>
         <div class="faq-item">
           <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-5">Можно ли заказать только материалы без монтажа?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-          <div class="faq-panel" id="faq-panel-5" aria-hidden="true"><p>Мы работаем как под ключ, так и на отдельных этапах — обсудим формат сотрудничества на консультации.</p></div>
+          <div class="faq-panel" id="faq-panel-5" aria-hidden="true"><p>Можно — работаем и под ключ, и на отдельных этапах: только поставка, только монтаж по вашему проекту, или совместно с вашим прорабом. Формат обсуждаем на консультации.</p></div>
         </div>
         <div class="faq-item">
           <h3><button class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-6">Как оформляется оплата?<svg aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-          <div class="faq-panel" id="faq-panel-6" aria-hidden="true"><p>По договору, поэтапно — условия оплаты фиксируются вместе со сметой и не меняются в процессе работ.</p></div>
+          <div class="faq-panel" id="faq-panel-6" aria-hidden="true"><p>По договору и поэтапно: аванс на закупку материалов после подписания, остаток — по акту приёмки выполненных работ. Разбивку платежей фиксируем вместе со сметой.</p></div>
         </div>
       </div>
     </div>
@@ -534,7 +536,7 @@
         <h2>Готовы обсудить<br>ваш объект?</h2>
       </div>
       <div class="cta-band-actions">
-        <p>Оставьте заявку — перезвоним в течение [15 минут] в рабочее время и согласуем бесплатный замер.</p>
+        <p>Оставьте заявку прямо сейчас — свяжемся с вами в ближайшее рабочее время и подберём удобную дату для замера.</p>
         <div class="cta-band-buttons">
           <a class="btn btn-primary btn-lg" href="#contact">Оставить заявку</a>
           <a class="header-phone header-phone-light" href="tel:[ТЕЛЕФОН]">
@@ -552,7 +554,7 @@
       <div data-reveal>
         <p class="eyebrow">Контакты</p>
         <h2>Оставьте заявку на бесплатный замер</h2>
-        <p class="section-lead">Перезвоним в течение [15 минут] в рабочее время и согласуем удобную дату выезда инженера.</p>
+        <p class="section-lead">Инженер свяжется с вами, уточнит детали объекта и запишет на бесплатный выезд в удобное время.</p>
 
         <form class="contact-form" id="contact-form" novalidate>
           <div class="form-row">
