@@ -96,6 +96,7 @@
         firstInvalid ??= phone;
       }
       if (!consent.checked) {
+        consent.closest('.form-consent').classList.add('has-error');
         firstInvalid ??= consent;
       }
 
