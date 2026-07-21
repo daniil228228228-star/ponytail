@@ -240,27 +240,40 @@ p { margin: 0 0 var(--space-4); color: var(--fg-2); }
   .spec-link { grid-area: link; justify-self: start; }
 }
 
-/* ---------- Why us: dark manifesto ---------- */
+/* ---------- Why us: bento grid ----------
+   Four parallel reasons, not a sequence — so hierarchy is carried by tile
+   size (the guarantee, our strongest differentiator, gets the large tile)
+   instead of an arbitrary 01-04 numbering that would imply an order none
+   of these actually have. */
 .why-manifesto { position: relative; background: var(--surface-dark); color: var(--fg-on-dark); }
 .why-manifesto h2, .why-manifesto p { color: inherit; }
-.manifesto-list {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
-  border-top: 1px solid rgba(255,255,255,0.14);
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-auto-rows: minmax(184px, auto);
+  gap: var(--space-4);
+  margin-top: var(--space-8);
 }
-.manifesto-list li {
-  display: flex; gap: var(--space-6); align-items: baseline;
-  padding: var(--space-8) 0; border-bottom: 1px solid rgba(255,255,255,0.14);
+.bento-tile {
+  display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-3);
+  padding: var(--space-6); border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.1);
+  transition: background-color var(--motion-base) var(--ease-standard), border-color var(--motion-base) var(--ease-standard);
 }
-.manifesto-list li:nth-child(odd) { padding-right: var(--space-8); }
-.manifesto-list li:nth-child(even) { padding-left: var(--space-8); border-left: 1px solid rgba(255,255,255,0.14); }
-.m-num { font-family: var(--font-mono); font-size: var(--text-2xl); color: var(--accent-on-dark); line-height: 1; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-.manifesto-list h3 { color: var(--fg-on-dark); }
-.manifesto-list p { color: var(--muted-on-dark); margin: 0; font-size: var(--text-sm); }
+.bento-tile:hover { background: rgba(255,255,255,0.075); border-color: rgba(255,255,255,0.2); }
+.bento-tile-lg { grid-column: 1; grid-row: 1 / span 2; }
+.bento-tile-wide { grid-column: 2 / span 2; grid-row: 2; }
+.bento-icon { width: 26px; height: 26px; color: var(--accent-on-dark); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.bento-tile h3 { color: var(--fg-on-dark); margin: 0 0 var(--space-1); }
+.bento-tile p { color: var(--muted-on-dark); margin: 0; font-size: var(--text-sm); }
+.bento-stat { display: flex; align-items: baseline; gap: var(--space-2); margin: 0; }
+.bento-stat-num {
+  font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: 600; line-height: 1;
+  color: var(--accent-on-dark); font-variant-numeric: tabular-nums;
+}
 @media (max-width: 900px) {
-  .manifesto-list { grid-template-columns: 1fr; }
-  .manifesto-list li:nth-child(even) { padding-left: 0; border-left: none; }
-  .manifesto-list li:nth-child(odd) { padding-right: 0; }
+  .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .bento-tile-lg, .bento-tile-wide { grid-column: auto; grid-row: auto; }
 }
 
 /* ---------- Process: staggered spine timeline ---------- */
@@ -462,10 +475,10 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 .spec-row[data-reveal]:nth-child(5) { transition-delay: 240ms; }
 .spec-row[data-reveal]:nth-child(6) { transition-delay: 300ms; }
 
-.manifesto-list > li[data-reveal]:nth-child(1) { transition-delay: 0ms; }
-.manifesto-list > li[data-reveal]:nth-child(2) { transition-delay: 80ms; }
-.manifesto-list > li[data-reveal]:nth-child(3) { transition-delay: 160ms; }
-.manifesto-list > li[data-reveal]:nth-child(4) { transition-delay: 240ms; }
+.bento-tile[data-reveal]:nth-child(1) { transition-delay: 0ms; }
+.bento-tile[data-reveal]:nth-child(2) { transition-delay: 80ms; }
+.bento-tile[data-reveal]:nth-child(3) { transition-delay: 160ms; }
+.bento-tile[data-reveal]:nth-child(4) { transition-delay: 240ms; }
 
 .spine-item[data-reveal]:nth-child(1) { transition-delay: 0ms; }
 .spine-item[data-reveal]:nth-child(2) { transition-delay: 90ms; }
@@ -481,7 +494,7 @@ blockquote cite { display: block; margin-top: var(--space-4); font-style: normal
 .masonry .project-card[data-reveal]:nth-child(6n+6) { transition-delay: 300ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .spec-row[data-reveal], .manifesto-list > li[data-reveal], .spine-item[data-reveal], .masonry .project-card[data-reveal] {
+  .spec-row[data-reveal], .bento-tile[data-reveal], .spine-item[data-reveal], .masonry .project-card[data-reveal] {
     transition-delay: 0ms;
   }
 }
