@@ -1,0 +1,90 @@
+/* Design tokens adapted from open-design's "premium" design system
+   (github.com/nexu-io/open-design, design-systems/premium/tokens.css)
+   — warm white canvas, graphite type, bronze accent. Tuned for EliteRoof. */
+
+:root {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --surface-warm: #f0e7d8;
+  --surface-dark: #1c1b19;
+  --fg: #1c1b19;
+  --fg-2: #4b4740;
+  --muted: #746d63;
+  --muted-on-dark: #c9c2b4;
+  --border: #ded6c9;
+  --border-soft: #eee7dc;
+  --accent: #a06a3b;
+  --accent-on: #ffffff;
+  --accent-hover: #8a5a30;
+  --accent-active: #764a27;
+  --success: #3f8f5f;
+  --warn: #c4872c;
+  --danger: #b84a4a;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 3.75rem;
+  --text-4xl: 5.25rem;
+
+  --leading-body: 1.58;
+  --leading-tight: 1.05;
+  --tracking-display: -0.02em;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  --section-y-desktop: 112px;
+  --section-y-tablet: 80px;
+  --section-y-phone: 56px;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-pill: 9999px;
+
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 24px 64px rgba(28, 27, 25, 0.12);
+  --focus-ring: 0 0 0 4px rgba(160, 106, 59, 0.28);
+
+  --motion-fast: 170ms;
+  --motion-base: 280ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --container-max: 1160px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17130f;
+    --surface: #211c17;
+    --surface-warm: #2a2119;
+    --fg: #f4efe6;
+    --fg-2: #d8cfc0;
+    --muted: #a89d8b;
+    --border: #3a322a;
+    --border-soft: #2a241d;
+    --accent: #c68a53;
+    --accent-on: #1c1300;
+    --accent-hover: #d59c68;
+    --accent-active: #e0ad7c;
+    --elev-raised: 0 24px 64px rgba(0, 0, 0, 0.45);
+    --focus-ring: 0 0 0 4px rgba(198, 138, 83, 0.32);
+  }
+}
