@@ -34,20 +34,20 @@ export default function Hero() {
 
       <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-12 pb-16 md:pb-24 max-w-3xl">
         <h1 className="font-display text-5xl md:text-7xl text-wool leading-[1.05]" style={{ letterSpacing: '-0.02em' }}>
-          Every knot
+          Каждый узел —
           <br />
-          is a decision.
+          это решение.
         </h1>
         <p className="mt-5 text-wool/80 text-lg max-w-xl">
-          Hand-knotted wool rugs, natural dyes, and pattern passed down through
-          generations of loom-work — not printed, woven.
+          Ковры ручной работы из шерсти, натуральные красители и узор,
+          передающийся через поколения ткачей — не напечатано, а соткано.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <button className="bg-madder text-wool px-8 py-3 font-medium hover:bg-turmeric hover:text-walnut transition-colors">
-            Shop the Collection
+            Выбрать ковёр
           </button>
           <button className="border border-wool/40 text-wool px-8 py-3 font-medium hover:bg-wool hover:text-walnut transition-colors">
-            Our Craft
+            Наше ремесло
           </button>
         </div>
       </div>

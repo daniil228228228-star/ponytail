@@ -6,18 +6,18 @@ export default function CTABand() {
       <KilimDivider color="#B5432A" />
       <div className="max-w-2xl mx-auto mt-10">
         <h2 className="font-display text-4xl md:text-5xl mb-4">
-          Bring the loom home.
+          Принесите станок домой.
         </h2>
         <p className="text-wool/70 mb-8">
-          Free shipping on your first weave. Every piece comes with its
-          maker's card.
+          Бесплатная доставка первого ковра. Каждое изделие — с карточкой
+          мастера.
         </p>
         <button className="bg-madder text-wool px-10 py-4 font-medium hover:bg-turmeric hover:text-walnut transition-colors">
-          Shop the Collection
+          Выбрать ковёр
         </button>
       </div>
       <KilimDivider color="#B5432A" />
-      <footer className="mt-16 text-wool/50 text-sm">Kilim &amp; Co. — hand-knotted, always.</footer>
+      <footer className="mt-16 text-wool/50 text-sm">Килим и Ко — только ручная работа.</footer>
     </section>
   );
 }
