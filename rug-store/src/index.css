@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Public Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F7F0E4;
+  color: #3A2E27;
+}
+
+.font-display {
+  font-family: 'Fraunces', serif;
+}
+
+/* kilim motif divider: a repeating diamond-lattice border that "weaves in" */
+.kilim-divider {
+  height: 14px;
+  width: 100%;
+}
+
+.kilim-divider path {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  transition: stroke-dashoffset 1.4s ease-out;
+}
+
+.kilim-divider.in-view path {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kilim-divider path {
+    transition: none;
+    stroke-dashoffset: 0;
+  }
+  .parallax-layer {
+    transform: none !important;
+  }
+}
