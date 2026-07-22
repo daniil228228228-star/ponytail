@@ -29,7 +29,7 @@ function Tile({ w }: { w: (typeof weaves)[number] }) {
   return (
     <div
       className={`group relative overflow-hidden ${
-        w.size === 'large' ? 'aspect-[4/5] md:aspect-auto md:row-span-2' : 'aspect-square'
+        w.size === 'large' ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'
       }`}
     >
       <img
@@ -59,7 +59,10 @@ export default function FeaturedWeaves() {
           Каждое изделие названо по узору и происхождению — не по артикулу.
         </p>
         <KilimDivider />
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:auto-rows-[calc((100vw-6rem)/3/1.5)]">
+        {/* fixed aspect-ratios per tile instead of a viewport-width calc —
+            robust at any screen size, no risk of the row height drifting
+            out of sync with the container's actual (max-w-capped) width */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
           {weaves.map((w) => (
             <Tile key={w.name} w={w} />
           ))}

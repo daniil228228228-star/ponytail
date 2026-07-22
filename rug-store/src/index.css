@@ -7,7 +7,7 @@ body {
   font-family: 'Public Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F7F0E4;
+  background-color: #E6E4DC;
   color: #3A2E27;
 }
 
@@ -15,26 +15,30 @@ body {
   font-family: 'Fraunces', serif;
 }
 
-/* kilim motif divider: a repeating diamond-lattice border that "weaves in" */
+/* kilim motif divider: a repeating diamond-lattice border that "weaves in".
+   stroke-dasharray/dashoffset are set inline per-instance from the path's
+   real getTotalLength() (see KilimDivider.tsx) — this file only handles
+   sizing and the reduced-motion override. */
 .kilim-divider {
   height: 14px;
   width: 100%;
 }
 
-.kilim-divider path {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1400;
-  transition: stroke-dashoffset 1.4s ease-out;
+a,
+button {
+  outline-offset: 2px;
 }
 
-.kilim-divider.in-view path {
-  stroke-dashoffset: 0;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #D9A441;
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .kilim-divider path {
-    transition: none;
-    stroke-dashoffset: 0;
+    transition: none !important;
+    stroke-dashoffset: 0 !important;
   }
   .parallax-layer {
     transform: none !important;

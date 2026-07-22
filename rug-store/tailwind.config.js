@@ -5,7 +5,10 @@ export default {
     extend: {
       colors: {
         walnut: '#241914',
-        wool: '#F7F0E4',
+        // Shifted cooler/greyer than a typical "AI cream" (#F4F1EA) so the
+        // light ground reads as raw undyed wool, not a generic warm-neutral
+        // default — flagged in design review as too close to that cliché.
+        wool: '#E6E4DC',
         madder: '#B5432A',
         sage: '#7A8B6F',
         turmeric: '#D9A441',

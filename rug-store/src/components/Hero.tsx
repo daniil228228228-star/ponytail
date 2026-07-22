@@ -31,6 +31,9 @@ export default function Hero() {
       />
       {/* subtle scrim only behind the headline itself, not the whole photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-walnut/70 via-transparent to-walnut/20" />
+      {/* dedicated nav scrim: keeps nav text/logo contrast controlled instead
+          of depending on the hero photo's unpredictable brightness there */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-walnut/60 to-transparent" />
 
       <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-12 pb-16 md:pb-24 max-w-3xl">
         <h1 className="font-display text-5xl md:text-7xl text-wool leading-[1.05]" style={{ letterSpacing: '-0.02em' }}>
