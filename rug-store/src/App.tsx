@@ -2,6 +2,8 @@ import Nav from './components/Nav';
 import Hero from './components/Hero';
 import FeaturedWeaves from './components/FeaturedWeaves';
 import Craft from './components/Craft';
+import InYourSpace from './components/InYourSpace';
+import SizeFit from './components/SizeFit';
 import CareProvenance from './components/CareProvenance';
 import CTABand from './components/CTABand';
 
@@ -12,6 +14,8 @@ function App() {
       <Hero />
       <FeaturedWeaves />
       <Craft />
+      <InYourSpace />
+      <SizeFit />
       <CareProvenance />
       <CTABand />
     </div>

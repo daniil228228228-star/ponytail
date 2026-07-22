@@ -35,12 +35,14 @@ function Tile({ w }: { w: (typeof weaves)[number] }) {
       <img
         src={w.image}
         alt={w.name}
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+        className="absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-500 group-hover:opacity-0 group-hover:scale-[1.03]"
+        style={{ transitionTimingFunction: 'var(--ease-shift)' }}
       />
       <img
         src={w.detail}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="absolute inset-0 h-full w-full object-cover opacity-0 scale-[1.03] transition-[opacity,transform] duration-500 group-hover:opacity-100 group-hover:scale-100"
+        style={{ transitionTimingFunction: 'var(--ease-shift)' }}
       />
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-walnut/80 to-transparent p-5">
         <div className="font-display text-wool text-xl">{w.name}</div>
