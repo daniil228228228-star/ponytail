@@ -1,4 +1,5 @@
 import KilimDivider from './KilimDivider';
+import ScrollReveal from './ScrollReveal';
 import { IMAGES } from '../images';
 
 const steps = [
@@ -20,18 +21,20 @@ export default function Craft() {
         <KilimDivider color="#D9A441" />
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <img
-            src={IMAGES.loomCraft}
-            alt="Ручное завязывание шерстяных узлов на традиционном станке"
-            className="w-full aspect-[4/3] object-cover"
-          />
+          <ScrollReveal>
+            <img
+              src={IMAGES.loomCraft}
+              alt="Ручное завязывание шерстяных узлов на традиционном станке"
+              className="w-full aspect-[4/3] object-cover"
+            />
+          </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {steps.map((s) => (
-              <div key={s.n}>
+            {steps.map((s, i) => (
+              <ScrollReveal key={s.n} delayMs={120 + i * 80}>
                 <div className="font-display text-turmeric text-sm tracking-widest">{s.n}</div>
                 <div className="font-display text-xl mt-1">{s.title}</div>
                 <p className="text-wool/70 text-sm mt-1">{s.body}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

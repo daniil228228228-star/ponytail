@@ -1,4 +1,5 @@
 import KilimDivider from './KilimDivider';
+import ScrollReveal from './ScrollReveal';
 import { IMAGES } from '../images';
 
 const weaves = [
@@ -27,11 +28,7 @@ const weaves = [
 
 function Tile({ w }: { w: (typeof weaves)[number] }) {
   return (
-    <div
-      className={`group relative overflow-hidden ${
-        w.size === 'large' ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'
-      }`}
-    >
+    <div className="group relative overflow-hidden h-full">
       <img
         src={w.image}
         alt={w.name}
@@ -63,10 +60,18 @@ export default function FeaturedWeaves() {
         <KilimDivider />
         {/* fixed aspect-ratios per tile instead of a viewport-width calc —
             robust at any screen size, no risk of the row height drifting
-            out of sync with the container's actual (max-w-capped) width */}
+            out of sync with the container's actual (max-w-capped) width.
+            Each tile fades + rises in on scroll, staggered 80ms per item
+            in reading order (IMPROVEMENT_PROMPT.md §5.3). */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {weaves.map((w) => (
-            <Tile key={w.name} w={w} />
+          {weaves.map((w, i) => (
+            <ScrollReveal
+              key={w.name}
+              delayMs={i * 80}
+              className={w.size === 'large' ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'}
+            >
+              <Tile w={w} />
+            </ScrollReveal>
           ))}
         </div>
       </div>

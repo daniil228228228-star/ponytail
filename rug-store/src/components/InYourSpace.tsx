@@ -1,4 +1,5 @@
 import KilimDivider from './KilimDivider';
+import ScrollReveal from './ScrollReveal';
 import { IMAGES } from '../images';
 
 // IMPROVEMENT_PROMPT.md §3.4 / §2.4 shots #11-#12. Real lifestyle/interior
@@ -39,11 +40,13 @@ export default function InYourSpace() {
                 row.reverse ? 'md:[&>*:first-child]:order-2' : ''
               }`}
             >
-              <img
-                src={row.image}
-                alt=""
-                className="w-full aspect-[4/3] object-cover"
-              />
+              <ScrollReveal>
+                <img
+                  src={row.image}
+                  alt=""
+                  className="w-full aspect-[4/3] object-cover"
+                />
+              </ScrollReveal>
               <div>
                 <h3 className="font-display text-2xl md:text-[40px] text-coffee mb-3">
                   {row.title}

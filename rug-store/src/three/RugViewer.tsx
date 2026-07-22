@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 // Specific submodule import, not the drei barrel — see RugMesh.tsx.
 import { OrbitControls } from '@react-three/drei/core/OrbitControls';
 import RugMesh from './RugMesh';
+import ContactShadow from './ContactShadow';
 
 // Interactive 3D rug viewer — IMPROVEMENT_PROMPT.md §4.
 // Idle: slow continuous auto-rotate (rotates the mesh itself). Drag/touch:
@@ -62,9 +63,14 @@ export default function RugViewer({ onTextureReady }: { onTextureReady: () => vo
         role="img"
         aria-label="Интерактивная 3D-модель ковра Бахтияри Ромб — потяните или используйте стрелки влево/вправо, чтобы рассмотреть со всех сторон"
       >
-        <ambientLight intensity={0.55} color="#f3e6c9" />
-        <directionalLight position={[3, 4, 2]} intensity={1.1} color="#ffd9a0" />
-        <directionalLight position={[-3, 1, -2]} intensity={0.3} color="#7a8b6f" />
+        {/* Lower ambient + a third rim light for contrast — flat even
+            lighting reads cheap, a key/fill/rim trio plus a ground shadow
+            reads like an actual product shoot. */}
+        <ambientLight intensity={0.38} color="#f3e6c9" />
+        <directionalLight position={[3, 4, 2]} intensity={1.25} color="#ffd9a0" />
+        <directionalLight position={[-3, 1, -2]} intensity={0.28} color="#7a8b6f" />
+        <directionalLight position={[-1.5, 2.5, -3.5]} intensity={0.6} color="#fff3da" />
+        <ContactShadow />
         <RugMesh
           autoRotate={autoRotate}
           manualRotationRef={manualRotationRef}

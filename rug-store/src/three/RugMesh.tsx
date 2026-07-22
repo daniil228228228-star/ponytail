@@ -59,7 +59,17 @@ export default function RugMesh({
       onPointerLeave={() => setDragging(false)}
     >
       <boxGeometry args={[2.6, 0.06, 3.4, 4, 1, 4]} />
-      <meshStandardMaterial map={texture} roughness={0.85} metalness={0} />
+      {/* meshPhysicalMaterial over meshStandardMaterial for one thing only:
+          a faint clearcoat pass. Matte wool stays matte (roughness 0.85) —
+          the thin coat just catches the rim/key lights as soft micro-highlights,
+          the way studio product photography reads as "expensive" rather than flat. */}
+      <meshPhysicalMaterial
+        map={texture}
+        roughness={0.85}
+        metalness={0}
+        clearcoat={0.06}
+        clearcoatRoughness={0.35}
+      />
     </mesh>
   );
 }
