@@ -1,0 +1,17 @@
+{
+  "name": "image-style",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free, offline neural style transfer (AI image generation) via @magenta/image + node-canvas — no API keys, no paid connectors.",
+  "main": "stylize.js",
+  "scripts": {
+    "demo": "node stylize.js --demo out/demo.png",
+    "stylize": "node stylize.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@magenta/image": "^0.2.1",
+    "canvas": "^2.11.2",
+    "jsdom": "^25.0.0"
+  }
+}
