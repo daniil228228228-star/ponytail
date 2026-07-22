@@ -29,6 +29,10 @@ export default {
         'display-xl': ['96px', { lineHeight: '1.05' }],
         'display-lg': ['64px', { lineHeight: '1.05' }],
         'display-md': ['40px', { lineHeight: '1.05' }],
+        // added: section-level headings had no token between display-md (40)
+        // and body-lg (22), so components fell back to Tailwind's stock
+        // text-3xl/4xl/5xl scale instead — two parallel scales coexisting.
+        'display-sm': ['28px', { lineHeight: '1.15' }],
         'body-lg': ['22px', { lineHeight: '1.5' }],
         'body-sm': ['15px', { lineHeight: '1.5' }],
         label: ['13px', { lineHeight: '1.3', letterSpacing: '0.08em' }],

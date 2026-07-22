@@ -48,7 +48,7 @@ export default function SizeFit() {
   return (
     <section className="bg-wool px-6 md:px-12 py-24 md:py-32">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-3xl md:text-4xl text-coffee mb-2">Размеры и подбор</h2>
+        <h2 className="font-display text-display-sm md:text-display-md text-coffee mb-2">Размеры и подбор</h2>
         <p className="text-coffee/70 max-w-xl mb-4">
           Большинство людей берут ковёр на размер меньше, чем нужно — оставляйте
           не менее 45 см голого пола со всех сторон.

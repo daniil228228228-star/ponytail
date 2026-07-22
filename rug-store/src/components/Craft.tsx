@@ -13,7 +13,7 @@ export default function Craft() {
   return (
     <section id="craft" className="bg-coffee text-wool px-6 md:px-12 py-20 md:py-28">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-3xl md:text-4xl mb-2">Наше ремесло</h2>
+        <h2 className="font-display text-display-sm md:text-display-md mb-2">Наше ремесло</h2>
         <p className="text-wool/70 max-w-xl mb-4">
           Реальная последовательность от начала до конца — единственное место
           на странице, где нумерация оправдана.

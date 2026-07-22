@@ -12,7 +12,7 @@ export default function Hero() {
     <section className="relative w-full bg-walnut md:flex md:h-screen md:min-h-[720px]">
       <div className="relative z-10 md:w-[42%] px-6 md:px-12 pt-28 pb-16 md:py-0 md:flex md:flex-col md:justify-center">
         <h1
-          className="font-display text-5xl md:text-6xl lg:text-7xl text-wool leading-[1.05]"
+          className="font-display text-display-md md:text-display-lg lg:text-display-xl text-wool"
           style={{ letterSpacing: '-0.02em' }}
         >
           Каждый узел —

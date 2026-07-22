@@ -26,7 +26,7 @@ export default function InYourSpace() {
   return (
     <section className="bg-wool px-6 md:px-12 py-24 md:py-48">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl text-coffee mb-2">В вашем доме</h2>
+        <h2 className="font-display text-display-md md:text-display-lg text-coffee mb-2">В вашем доме</h2>
         <p className="text-coffee/70 max-w-xl mb-4">
           Один и тот же ковёр — два совершенно разных дома.
         </p>
@@ -48,7 +48,7 @@ export default function InYourSpace() {
                 />
               </ScrollReveal>
               <div>
-                <h3 className="font-display text-2xl md:text-[40px] text-coffee mb-3">
+                <h3 className="font-display text-display-sm md:text-display-md text-coffee mb-3">
                   {row.title}
                 </h3>
                 <p className="text-coffee/80 text-body-lg max-w-md">{row.body}</p>
