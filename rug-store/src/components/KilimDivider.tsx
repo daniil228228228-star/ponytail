@@ -37,7 +37,7 @@ export default function KilimDivider({ color = '#B5432A' }: { color?: string }) 
     // the animation entirely.
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     path.getBoundingClientRect();
-    path.style.transition = 'stroke-dashoffset 1.4s ease-out';
+    path.style.transition = 'stroke-dashoffset 1.4s var(--ease-settle)';
 
     const observer = new IntersectionObserver(
       ([entry]) => {

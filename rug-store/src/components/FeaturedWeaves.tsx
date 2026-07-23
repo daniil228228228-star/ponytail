@@ -8,6 +8,7 @@ const weaves = [
     detail: IMAGES.heroTexture,
     name: 'Бахтияри Ромб',
     meta: 'Шерсть Загроса · 9 600 узлов/дм² · ручное прядение',
+    priceFrom: 'от 46 000 ₽/м²',
     size: 'large' as const,
   },
   {
@@ -15,6 +16,7 @@ const weaves = [
     detail: IMAGES.foldedRug,
     name: 'Охра Шеврон',
     meta: 'Анатолийская шерсть · природный индиго и вайда',
+    priceFrom: 'от 38 000 ₽/м²',
     size: 'small' as const,
   },
   {
@@ -22,6 +24,7 @@ const weaves = [
     detail: IMAGES.rolledRug,
     name: 'Марена Решётка',
     meta: 'Курдская шерсть · одинарная основа, симметричный узел',
+    priceFrom: 'от 41 000 ₽/м²',
     size: 'small' as const,
   },
 ];
@@ -44,6 +47,7 @@ function Tile({ w }: { w: (typeof weaves)[number] }) {
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-walnut/80 to-transparent p-5">
         <div className="font-display text-wool text-xl">{w.name}</div>
         <div className="text-wool/70 text-sm mt-1">{w.meta}</div>
+        <div className="text-turmeric text-sm mt-1.5 font-medium">{w.priceFrom}</div>
       </div>
     </div>
   );
@@ -54,8 +58,11 @@ export default function FeaturedWeaves() {
     <section id="weaves" className="bg-wool px-6 md:px-12 py-20 md:py-28">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-display text-display-sm md:text-display-md text-coffee mb-2">Избранные ковры</h2>
-        <p className="text-coffee/70 max-w-xl mb-4">
+        <p className="text-coffee/70 max-w-xl mb-1">
           Каждое изделие названо по узору и происхождению — не по артикулу.
+        </p>
+        <p className="text-coffee/50 text-sm max-w-xl mb-4">
+          Цена — ориентировочная, за м²; точная стоимость зависит от размера и уточняется на консультации.
         </p>
         <KilimDivider />
         {/* fixed aspect-ratios per tile instead of a viewport-width calc —

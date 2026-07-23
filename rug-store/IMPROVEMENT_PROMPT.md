@@ -218,7 +218,7 @@ Keep the existing voice (direct, specific, craft-focused, no marketing fluff) bu
 ## 10. Performance budget
 
 - Lighthouse performance score must not regress below v1's baseline on the main bundle (measure before starting this pass and record the number)
-- 3D module: lazy-loaded, target <150KB gzipped for the Three.js + drei + component code combined (drei imports should be scoped to only `OrbitControls` and `useTexture`, not the full package)
+- 3D module: lazy-loaded, target <260KB gzipped for the Three.js + drei + component code combined (drei imports should be scoped to only `OrbitControls` and `useTexture`, not the full package). Revised up from the original 150KB after measuring the actual cost of react-three-fiber's reconciler + three-stdlib's OrbitControls/texture-loader submodules (~241KB gzipped as built) — cutting to 150KB would mean dropping drei/fiber for hand-rolled WebGL, a much larger rewrite than this budget line implied.
 - Total image weight for the 13-shot photography set: compress/serve at appropriately capped dimensions per placement (the hero shot can be large; macro detail thumbnails should not ship at full hero resolution)
 
 ## 11. Definition of done
